@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductCard from "../ProductCard/ProductCard";
-import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import Paginas from "../Paginas/Paginas";
 import Filter from "../Filter/Filter";
 import Alert from "@material-ui/lab/Alert";
+import Pagination from "@material-ui/lab/Pagination";
 
 const useStyles = makeStyles((theme) => ({
   catalogue: {
@@ -58,32 +57,43 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Catalogue({ products }) {
-  const pages = useSelector((store) => store.pages);
   const classes = useStyles();
-  const lastIndex = pages * 30 > products.length ? products.length : pages * 30;
-  const firstIndex = lastIndex < 30 ? 30 - lastIndex : lastIndex - 30;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardsPerPage, setCardsPerPage] = useState(30);
 
-  return products?.length === 1 ? (
+  const indexOfLastCard = currentPage * cardsPerPage;
+  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+  const pages = products?.slice(indexOfFirstCard, indexOfLastCard);
+
+  const paginate = (event, value) => setCurrentPage(value);
+
+  return products?.length === 0 ? (
     <div className={classes.containerall}>
       <div className={classes.filter}>
         <Filter />
       </div>
       <div className={classes.alertC}>
         <Alert severity="info" className={classes.alert}>
-          {products[0].title}
+          No hay productos
         </Alert>
       </div>
     </div>
   ) : (
     <div className={classes.containerall}>
       <div className={classes.pagination}>
-        <Paginas />
+        <Pagination
+          size="large"
+          variant="outlined"
+          shape="rounded"
+          count={Math.ceil(products?.length / cardsPerPage)}
+          onChange={paginate}
+        />
       </div>
       <div className={classes.filter}>
-        {products?.length > 1 ? <Filter /> : null}
+        <Filter />
       </div>
       <div className={classes.catalogue}>
-        {products?.slice(firstIndex, lastIndex).map((product) => (
+        {pages?.map((product) => (
           <div key={product.id} className={classes.product}>
             <ProductCard props={product} />
           </div>

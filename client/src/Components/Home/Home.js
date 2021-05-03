@@ -32,10 +32,11 @@ const useStyles = makeStyles(() => ({
 export default function Home() {
   const classes = useStyles();
   const products = useSelector((store) => store.getProductsByKeyword);
+  const keyword = useSelector((store) => store.keyword);
 
   return (
     <div>
-      {products.length === 0 ? (
+      {keyword === "" ? (
         <div className={classes.presentation}>
           <h3 className={classes.font}>Haz tu primer busqueda !</h3>
           <SearchBar />

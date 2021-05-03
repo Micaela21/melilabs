@@ -1,5 +1,6 @@
 {
-  "name": "labs-challenge",
+  "homepage": "https://melilabs.herokuapp.com/",
+  "name": "melilabs",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

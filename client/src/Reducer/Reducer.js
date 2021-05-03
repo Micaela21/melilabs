@@ -47,7 +47,7 @@ function reducer(state = initialState, action) {
             ? [...state.getProductsByKeyword].filter(
                 (obj) => obj.condition === action.payload
               )
-            : [{ title: "No hay productos usados" }],
+            : null,
       };
     case NUEVO:
       return {
@@ -59,7 +59,7 @@ function reducer(state = initialState, action) {
             ? [...state.getProductsByKeyword].filter(
                 (obj) => obj.condition === action.payload
               )
-            : [{ title: "No hay productos nuevos" }],
+            : null,
       };
     case CHANGE_PAGE:
       return {
@@ -74,7 +74,7 @@ function reducer(state = initialState, action) {
     case RESET:
       return {
         ...state,
-        getProductsByKeyword: [],
+        keyword: "",
       };
     default:
       return state;
