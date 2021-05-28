@@ -93,7 +93,7 @@ function Catalogue({ products }) {
         <Filter />
       </div>
       <div className={classes.catalogue}>
-        {pages?.map((product) => (
+        {pages && pages.map((product) => (
           <div key={product.id} className={classes.product}>
             <ProductCard props={product} />
           </div>

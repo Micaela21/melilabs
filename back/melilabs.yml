@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  melilabs-back:
+    image: melilabs_back:latest
+    ports:
+      - "3001:3001"
+    networks:
+      melilabs-net:
+  melilabs-client:
+    image: melilabs_client:latest
+    ports:
+      - "3000:3000"
+    networks:
+      melilabs-net:
+    
+networks:
+  melilabs-net:

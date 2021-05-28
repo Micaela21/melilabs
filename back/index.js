@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 
-const search = require("./routes/search");
+const search = require("./search");
 const path = require("path");
 const server = express();
 
