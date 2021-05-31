@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                dir('/back') {
-                        sh 'node --version'
-                }
+                echo 'building the application'
             }
         }
         stage('test'){
