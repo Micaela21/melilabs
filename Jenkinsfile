@@ -3,8 +3,11 @@ pipeline {
 
     stages {
         stage('build'){
-            steps{
-                echo 'building the application'
+            dir('/back') {
+                agent { dockerfile true}
+                steps{
+                    sh 'node --version'
+                }
             }
         }
         stage('test'){
