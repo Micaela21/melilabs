@@ -3,11 +3,11 @@ pipeline {
 
     stages {
         stage('build'){
+            agent { dockerfile true}
+            steps {
             dir('/back') {
-                agent { dockerfile true}
-                steps{
                     sh 'node --version'
-                }
+            }
             }
         }
         stage('test'){
