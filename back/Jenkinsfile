@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                sh 'docker stack deploy -c melilabs.yml melilabs'
+                sh 'start.sh'
             }
         }
         stage('test'){
