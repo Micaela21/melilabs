@@ -5,6 +5,7 @@ pipeline {
         stage('build'){
             steps {
                 echo 'building the application'
+                readFile '/start.sh'
             }
         }
         stage('test'){
