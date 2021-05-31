@@ -3,9 +3,8 @@ pipeline {
 
     stages {
         stage('build'){
-            agent {Dockerfile true}
             steps {
-                echo 'building the application'
+                sh 'docker stack deploy -c melilabs.yml melilabs'
             }
         }
         stage('test'){
