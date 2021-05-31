@@ -1,10 +1,12 @@
 pipeline {
-    agent any 
+    agent {
+        dockerfile true
+    }
 
     stages {
         stage('build'){
             steps {
-                bat './start.sh'
+                echo 'building'
             }
         }
         stage('test'){
