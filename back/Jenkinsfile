@@ -6,10 +6,13 @@ pipeline {
     //     }
     // }
     agent any
+    
+    tools {nodejs "nodejs"}
+
     stages {
         stage('build'){
             steps {
-                sh 'npm install && npm start'
+                sh 'npm config ls'
             }
         }
         stage('test'){
