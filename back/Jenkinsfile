@@ -6,13 +6,12 @@ pipeline {
     //     }
     // }
     agent any
-    
-    tools {nodejs "nodejs"}
 
     stages {
         stage('build'){
             steps {
-                sh 'npm config ls'
+                sh nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
+                    sh 'npm config ls'
             }
         }
         stage('test'){
