@@ -13,7 +13,6 @@ pipeline {
         stage('build'){
             steps {
                 sh 'cd back && npm install'
-                sh 'cd back && rm -r public'
                 sh 'cd client && npm install && npm run build && ls'
                 sh 'cd client && cp -r build* /back/public'
             }
