@@ -7,18 +7,14 @@ const search = require("./search");
 const path = require("path");
 const server = express();
 
-server.use(express.static("public"));
+server.use(express.static(path.join(__dirname + "/client/build/public/index.html")));
 server.use(morgan("dev"));
 server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
 server.use(cors());
 
 server.use("/api", search);
-
-server.get("*", (req, res) => {
-  console.log(path.join(__dirname + "/public/index.html"))
-  res.sendFile(path.join(__dirname + "/public/index.html"));
-});
+console.log(__dirname + "/client/build/public/index.html")
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
