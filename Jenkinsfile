@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh 'npm --version'
                 sh 'node --version'
-                sh 'cd back && npm install '
+                sh 'cd back && npm install && npm start'
             }
         }
         stage('build front'){
@@ -27,7 +27,7 @@ pipeline {
             steps{
                 sh 'npm --version'
                 sh 'node --version'
-                sh 'cd client && npm install'
+                sh 'cd client && npm install && npm start'
             }
         }
         stage('deploy'){
