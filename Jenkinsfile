@@ -13,11 +13,13 @@ pipeline {
         stage('build'){
             steps {
                 sh 'cd back && npm install'
-                sh 'cd client && npm install && npm run build'
+                sh 'cd client && npm install && npm run build && ls'
             }
         }
         stage('test'){
-            echo 'testing'
+            steps{
+                echo 'testing'
+            }
         }
         stage('deploy'){
             steps{
