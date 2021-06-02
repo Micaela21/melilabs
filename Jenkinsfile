@@ -10,16 +10,18 @@ pipeline {
     tools {nodejs "node"}
 
     stages {
-        stage('build'){
+        stage('build back'){
             steps {
                 sh 'npm --version'
                 sh 'node --version'
-                sh 'cd back && npm install'
+                sh 'cd back && npm install && npm start'
             }
         }
-        stage('test'){
+        stage('build front'){
             steps{
-                echo 'testing the application'
+                sh 'npm --version'
+                sh 'node --version'
+                sh 'cd client && npm install && npm start'
             }
         }
         stage('deploy'){
