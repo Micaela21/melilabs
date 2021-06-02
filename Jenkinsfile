@@ -11,13 +11,19 @@ pipeline {
 
     stages {
         stage('build back'){
+            when {
+                branch 'back'
+            }
             steps {
                 sh 'npm --version'
                 sh 'node --version'
-                sh 'cd back && npm install'
+                sh 'cd back && npm install '
             }
         }
         stage('build front'){
+            when {
+                branch 'client'
+            }
             steps{
                 sh 'npm --version'
                 sh 'node --version'
@@ -30,4 +36,13 @@ pipeline {
             }
         }
     }
+}
+
+stage('Example Deploy') {
+when {
+branch 'production'
+}
+steps {
+echo 'Deploying'
+}
 }
