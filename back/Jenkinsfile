@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                sh 'npm config ls'
+                sh 'npm install && npm start'
             }
         }
         stage('test'){
