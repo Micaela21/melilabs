@@ -27,7 +27,7 @@ pipeline {
             steps{
                 sh 'npm --version'
                 sh 'node --version'
-                sh 'cd client && npm install && npm build'
+                sh 'cd client && npm install && npm run build'
             }
         }
         stage('deploy'){
