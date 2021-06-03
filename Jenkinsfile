@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                sh 'cd back && npm install'
+                sh 'cd back && ls && npm install'
                 sh 'cd client && npm install && npm run build && ls'
                 sh 'cd client && cp -r build ./back/public/'
             }
@@ -30,11 +30,11 @@ pipeline {
     }
 }
 
-stage('Example Deploy') {
-when {
-branch 'production'
-}
-steps {
-echo 'Deploying'
-}
-}
+// stage('Example Deploy') {
+// when {
+// branch 'production'
+// }
+// steps {
+// echo 'Deploying'
+// }
+// }
