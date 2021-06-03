@@ -26,7 +26,7 @@ pipeline {
         stage('deploy'){
             steps{
                 echo 'deploying'
-                sh 'cd back && npm install pm2@latest && pm2 update && pm2 start index.js'
+                sh 'cd back && npm install pm2@latest -g && pm2 update && pm2 start index.js'
             }
         }
     }
