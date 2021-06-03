@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh 'cd back && ls && npm install'
                 sh 'cd client && npm install && npm run build && ls'
-                sh 'cd client && cp -r build ./back/public/'
+                sh 'cp -r ./client/build/ ./back/public/'
             }
         }
         stage('test'){
