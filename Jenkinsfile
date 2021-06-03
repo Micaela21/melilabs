@@ -25,6 +25,7 @@ pipeline {
         stage('deploy'){
             steps{
                 echo 'deploying the application'
+                sh 'cd back && npm install pm2@latest && pm2 start'
             }
         }
     }
