@@ -12,6 +12,7 @@ pipeline {
     stages {
         stage('build'){
             steps {
+                echo 'testing'
                 sh 'cd back && ls && npm install'
                 sh 'cd client && npm install && npm run build && ls'
                 sh 'cp -r ./client/build/ ./back/public/'
@@ -24,8 +25,8 @@ pipeline {
         }
         stage('deploy'){
             steps{
-                echo 'deploying the application'
-                sh 'cd back && npm install pm2@latest && pm2 start'
+                echo 'deploying'
+                sh 'cd back && npm install pm2@latest && pm2 update && pm2 start index.js'
             }
         }
     }
