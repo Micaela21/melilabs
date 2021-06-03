@@ -26,17 +26,15 @@ pipeline {
         stage('deploy'){
             steps{
                 echo 'deploying'
-                sh '/etc/netplan'
-                sh 'cd back && npm install pm2@latest -g && pm2 update && pm2 start -f index.js --name melilabs'
+                sh 'sshpass -p "password" scp -r ./back micaela_alvarez@172.18.33.188:/home/micaela_alvarez'
+                // sh 'cd back && npm install pm2@latest -g && pm2 update && pm2 start -f index.js --name melilabs'
             }
         }
     }
 }
 
 // stage('Example Deploy') {
-// when {
-// branch 'production'
-// }
+// when {ls -la
 // steps {
 // echo 'Deploying'
 // }
