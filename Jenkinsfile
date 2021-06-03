@@ -26,7 +26,7 @@ pipeline {
         stage('deploy'){
             steps{
                 echo 'deploying'
-                sh 'cat /etc/netplan/00-installer-config.yaml'
+                sh '/etc/netplan'
                 sh 'cd back && npm install pm2@latest -g && pm2 update && pm2 start -f index.js --name melilabs'
             }
         }
