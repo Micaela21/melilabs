@@ -33,7 +33,7 @@ pipeline {
                 echo 'deploying'
                 sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 // sh 'ssh -T ubuntu@192.168.200.35 && pwd && cd home/ubuntu/Micaela/back && ls'
-                sshCommand remote: remote, command: "pwd"
+                sshCommand remote: remote, command: "pwd, cd Micaela/back, ls"
             }
         }
     }
