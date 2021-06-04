@@ -12,10 +12,9 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                echo 'testing'
-                sh 'cd back && ls && npm install'
+                sh 'cd back && npm install && rm -d public && ls'
                 sh 'cd client && npm install && npm run build && ls'
-                sh 'cp -r ./client/build/ ./back/public/'
+                sh 'cp -r ./client/build/* ./back/public'
             }
         }
         stage('test'){
