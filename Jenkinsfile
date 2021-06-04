@@ -26,7 +26,7 @@ pipeline {
         stage('deploy'){
             steps{
                 echo 'deploying'
-                sh 'sshpass -p "Tsoft2021" scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
+                sh 'scp ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 // sh 'cd back && npm install pm2@latest -g && pm2 update && pm2 start -f index.js --name melilabs'
             }
         }
