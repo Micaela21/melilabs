@@ -1,3 +1,9 @@
+def remote = [name: 'ubuntu',
+                host: '192.168.200.35',
+                user: 'ubuntu',
+                password: 'Tsoft2021',
+                allowAnyHosts: true]
+
 pipeline {
     // agent {
     //     docker {
@@ -27,18 +33,7 @@ pipeline {
                 echo 'deploying'
                 sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 // sh 'ssh -T ubuntu@192.168.200.35 && pwd && cd home/ubuntu/Micaela/back && ls'
-                node {
-                    def remote = [:]
-                    remote.name = 'ubuntu'
-                    remote.host = '192.168.200.35'
-                    remote.user = 'ubuntu'
-                    remote.password = 'Tsoft2021'
-                    remote.allowAnyHosts = true
-                    stage('Remote SSH') {
-                        sshCommand remote: remote, command: "ls -lrt"
-                        sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
-                    }
-                }
+                sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
             }
         }
     }
