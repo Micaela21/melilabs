@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                sh 'cd back && rm -rf public && ls'
+                sh 'cd back && rm -rf public && mkdir public && ls'
                 sh 'cd client && npm install && npm run build && ls'
                 sh 'cp -r ./client/build/* ./back/public'
             }
