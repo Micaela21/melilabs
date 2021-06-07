@@ -16,6 +16,9 @@ pipeline {
         stage('test'){
             steps{
                 echo 'testing the application'
+                waitForQualityGate(webhookSecretId: 'sonarqube') {
+                echo 'sonarqube'
+              }
             }
         }
         stage('deploy'){
