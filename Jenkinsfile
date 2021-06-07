@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                sh 'cd back && rm -rf public'
+                sh 'cd back && rm -rf public && npm install sonar-scanner -g'
                 sh 'cd client && npm install && npm run build && ls'
                 sh 'cp -r ./client/build/* ./back/'
             }
