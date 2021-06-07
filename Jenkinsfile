@@ -14,11 +14,17 @@ pipeline {
             }
         }
         stage('test'){
-            steps{
+            steps {
                 echo 'testing the application'
                 waitForQualityGate(webhookSecretId: 'sonarqube') {
                 echo 'sonarqube'
-              }
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
             }
         }
         stage('deploy'){
