@@ -14,28 +14,10 @@ pipeline {
             }
         }
         stage('test'){
-            // timeout(time: 1, unit: 'HOURS') {
-            //   def qg = waitForQualityGate(webhookSecretId: 'sonarqube')
-            //   if (qg.status != 'OK') {
-            //       error "Pipeline aborted due to quality gate failure: ${qg.status}"
-            // }
-            steps {
-                echo 'testing the application'
-                    waitForQualityGate(webhookSecretId: 'sonarqube') {
-                echo 'sonarqube'
-                    timeout(time: 1, unit: 'HOURS') {
-                        waitForQualityGate abortPipeline: true
-                    }
-                }
+            steps{
+                sh 'npm run sonar'
             }
         }
-        // stage("Quality Gate") {
-        //     steps {
-        //         timeout(time: 1, unit: 'HOURS') {
-        //             waitForQualityGate abortPipeline: true
-        //         }
-        //     }
-        // }
         stage('deploy'){
             steps {
                 echo 'deploying'

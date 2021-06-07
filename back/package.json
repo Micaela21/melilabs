@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://192.168.200.45:9000 -Dsonar.login=132994b84be5907c4f34661996ebf4d3d1c37490 -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "sonar-scanner":"^3.1.0"
   }
 }
