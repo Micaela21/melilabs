@@ -23,12 +23,13 @@ pipeline {
         }
         stage("Quality Gate") {
             steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
         stage('deploy'){
-            steps{
+            steps {
                 echo 'deploying'
                 sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 sshCommand remote: remote, command: "pwd; cd Micaela/back; ls; docker build -t melilabs_back .; docker image ls"
