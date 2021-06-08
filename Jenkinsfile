@@ -8,14 +8,18 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                sh 'make back'
-                sh 'make client'
-                sh 'make copy'
+                // sh 'make back'
+                // sh 'make client'
+                // sh 'make copy'
+                sh 'cd back && rm -rf build && npm install sonar-scanner -g && mkdir build && ls'
+                sh 'cd client && npm install && npm run build && ls'
+                sh 'cp -r ./client/build/* ./back/build/'
             }
         }
         stage('test'){
             steps{
-                sh 'make sonar'
+                // sh 'make sonar'
+                sh 'cd back && npm run sonar'
             }
         }
         stage('deploy'){
