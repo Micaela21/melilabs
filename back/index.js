@@ -6,7 +6,6 @@ const path = require("path");
 const cors = require('cors')
 const server = express();
 
-server.name = 'API';
 const corsOptions = {
   origin: 'http://localhost:3001',
   credentials : true
