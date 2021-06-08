@@ -1,9 +1,12 @@
 // def remote = [name: 'ubuntu', host: '192.168.200.35', user: 'ubuntu', password: ${env.HOST_PASSWORD}, allowAnyHosts: true]
 
 pipeline {
-    agent any
+    // agent any
 
-    tools {nodejs "node"}
+    // tools {nodejs "node"}
+    agent {
+    docker { image 'node:latest' }
+  }
 
     stages {
         stage('build'){

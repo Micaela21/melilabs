@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/jenkins_home/:/var/jenkins_home/
+      - /usr/bin/docker:/usr/bin/docker
+  sonarqube:
+    image: sonarqube:lts
+    ports:
+      - "9000:9000"

@@ -1,3 +1,6 @@
+run-jenkins:
+	docker stack deploy -c devops.yml devops
+	 
 push:
 	git add .
 	git commit -m 'pipeline'
