@@ -20,10 +20,12 @@ pipeline {
             }
         }
         stage('docker-build'){
-            steps{ 
-                script{
-                    def customImage = docker.build("melilabs:latest")
-                    customImage.push()
+            steps{
+                dir('./client') {
+                    script{
+                        def customImage = docker.build("melilabs:latest")
+                        customImage.push()
+                    }
                 }
                 // docker.withRegistry('https://hub.docker.com', 'dockerHub') {
                 //     def customImage = docker.build("my-image:${env.BUILD_ID}")
