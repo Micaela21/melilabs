@@ -23,15 +23,19 @@ pipeline {
             steps{
                 dir('./back') {
                     script{
-                        withCredentials([usernamePassword( credentialsId: 'dockerHub', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
-                        def registry_url = "registry.hub.docker.com/"
-                        sh "docker login -u $USER -p $PASSWORD ${registry_url}"
-                        docker.withRegistry("http://${registry_url}", "dockerHub") {
-                            // Push your image now
+                        withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
                             sh "docker push m1c4/melilabs:latest"
-                            }
-                        }
                     }
+                    // script{
+                    //     withCredentials([usernamePassword( credentialsId: 'dockerHub', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+                    //     def registry_url = "registry.hub.docker.com/"
+                    //     sh "docker login -u $USER -p $PASSWORD ${registry_url}"
+                    //     docker.withRegistry("http://${registry_url}", "dockerHub") {
+                    //         // Push your image now
+                    //         sh "docker push m1c4/melilabs:latest"
+                    //         }
+                    //     }
+                    // }
 
                     // script{
                     //     def customImage = docker.build("melilabs:latest")
