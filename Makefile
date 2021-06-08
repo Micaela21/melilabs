@@ -14,7 +14,7 @@ client:
 	npm run build
 
 copy:
-	cp -r ./client/build/* ./back/
+	cp -r ./client/build/* ./back/build/
 
 sonar:
 	cd back
