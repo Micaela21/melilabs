@@ -21,8 +21,7 @@ pipeline {
         }
         stage('docker-build'){
             steps{
-                sh 'docker build -t melilabs .'
-                sh 'docker login && docker push m1c4/melilabs:latest'
+                sh 'cd back && docker build -t melilabs . && docker login && docker push m1c4/melilabs:latest'
             }
         }
         stage('test'){
