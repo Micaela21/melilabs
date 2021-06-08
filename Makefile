@@ -7,6 +7,7 @@ back:
 	cd back
 	rm -rf build
 	npm install sonar-scanner -g
+	mkdir build
 
 client:
 	cd client
