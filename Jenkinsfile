@@ -5,8 +5,11 @@ pipeline {
 
     // tools {nodejs "node"}
     agent {
-    docker { image 'node:latest' }
-  }
+        docker {
+            image 'node:latest'
+            args '-u root'
+        }
+    }
 
     stages {
         stage('build'){
