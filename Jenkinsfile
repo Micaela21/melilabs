@@ -21,7 +21,7 @@ pipeline {
         }
         stage('docker-build'){
             steps{
-                dir('./client') {
+                dir('./back') {
                     script{
                         def customImage = docker.build("melilabs:latest")
                         customImage.push()
