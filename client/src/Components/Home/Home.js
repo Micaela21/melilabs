@@ -38,7 +38,7 @@ export default function Home() {
     <div>
       {keyword === "" ? (
         <div className={classes.presentation}>
-          <h3 className={classes.font}>Haz tu primer busqueda !</h3>
+          <h3 className={classes.font}>Haz tu busqueda !</h3>
           <SearchBar />
         </div>
       ) : (
