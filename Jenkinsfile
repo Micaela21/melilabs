@@ -14,7 +14,7 @@ pipeline {
                 // sh 'make back'
                 // sh 'make client'
                 // sh 'make copy'
-                sh 'cd back && rm -rf build && npm install sonar-scanner -g && mkdir build && ls'
+                sh 'cd back && rm -rf build && npm install sonar-scanner && mkdir build && ls'
                 sh 'cd client && npm install && npm run build && ls'
                 sh 'cp -r ./client/build/* ./back/build/'
             }
