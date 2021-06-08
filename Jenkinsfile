@@ -21,10 +21,11 @@ pipeline {
         }
         stage('docker-build'){
             steps{
-                docker.withRegistry('https://hub.docker.com/repository/docker/m1c4/melilabs', 'dockerHub') {
-                    def customImage = docker.build("my-image:${env.BUILD_ID}")
-                    customImage.push()
-                    } 
+                docker.build("my-image:${env.BUILD_ID}")
+                // docker.withRegistry('https://hub.docker.com/repository/docker/m1c4/melilabs', 'dockerHub') {
+                //     def customImage = docker.build("my-image:${env.BUILD_ID}")
+                //     customImage.push()
+                //     } 
                 // sh 'cd back && docker build -t melilabs . && docker login && docker push m1c4/melilabs:latest'
             }
         }
