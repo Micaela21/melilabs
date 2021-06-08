@@ -16,7 +16,7 @@ pipeline {
                 sh 'cp -r ./client/build/* ./back/build/'
             }
         }
-        stage(docker-build){
+        stage('docker-build'){
             steps{
                 sh 'docker build -t melilabs .'
                 sh 'docker login && docker push m1c4/melilabs:latest'
