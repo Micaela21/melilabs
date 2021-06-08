@@ -1,7 +1,7 @@
 push:
 	git add .
 	git commit -m 'pipeline'
-	git push
+	git push --set-upstream origin pipeline
 
 back:
 	cd back
