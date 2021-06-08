@@ -4,7 +4,11 @@ const morgan = require("morgan");
 const search = require("./search");
 const path = require("path");
 const cors = require('cors')
+const helmet = require("helmet");
+const server1 = express();
+server1.disable("x-powered-by");
 const server = express();
+server.use(helmet.hidePoweredBy());
 
 const corsOptions = {
   origin: 'http://localhost:3001',
