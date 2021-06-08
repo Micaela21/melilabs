@@ -8,21 +8,22 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                sh 'cd back && rm -rf public && npm install sonar-scanner -g'
-                sh 'cd client && npm install && npm run build && ls'
-                sh 'cp -r ./client/build/* ./back/'
+                sh 'make back'
+                sh 'make client'
+                sh 'make copy'
             }
         }
         stage('test'){
             steps{
-                sh 'cd back && npm run sonar'
+                sh 'make sonar'
             }
         }
         stage('deploy'){
             steps {
                 echo 'deploying'
-                sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
-                sshCommand remote: remote, command: "pwd; cd Micaela/back; ls;make build; make run"
+                sh 'rsync -av --progress ./back /ubuntu@192.168.200.35:/home/ubuntu/Micaela --exclude ./back/node_modules'
+                // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
+                // sshCommand remote: remote, command: "pwd; cd Micaela/back; ls;make build; make run"
             }
         }
     }
