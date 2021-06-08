@@ -24,8 +24,8 @@ pipeline {
         }
         stage('deploy'){
             steps {
-                echo 'deploying'
-                sh 'rsync -av --progress ./back /ubuntu@192.168.200.35:/home/ubuntu/Micaela --exclude ./back/node_modules'
+                sh 'rsync -vra --exclude="./back/node_modules" -e ssh /home/ubuntu/Micaela ubuntu@192.168.200.35:/home/ubuntu/Micaela'
+                // sh 'rsync -av --progress ./back /ubuntu@192.168.200.35:/home/ubuntu/Micaela --exclude ./back/node_modules'
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 // sshCommand remote: remote, command: "pwd; cd Micaela/back; ls;make build; make run"
             }
