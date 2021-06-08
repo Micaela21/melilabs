@@ -25,6 +25,7 @@ pipeline {
                     script{
                         withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
                             sh "docker push m1c4/melilabs:latest"
+                        }
                     }
                     // script{
                     //     withCredentials([usernamePassword( credentialsId: 'dockerHub', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
@@ -35,7 +36,6 @@ pipeline {
                     //         sh "docker push m1c4/melilabs:latest"
                     //         }
                     //     }
-                    // }
 
                     // script{
                     //     def customImage = docker.build("melilabs:latest")
