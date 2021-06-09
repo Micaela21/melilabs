@@ -44,6 +44,7 @@ pipeline {
         stage('deploy'){
             steps {
                 echo 'deploying'
+                echo $REMOTE_CREDENTIALS_PSW
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 script {
                     // withCredentials([usernamePassword(credentialsId: 'remote', passwordVariable: 'remotepassword', usernameVariable: 'remoteusername')]) {
