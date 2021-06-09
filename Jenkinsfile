@@ -45,6 +45,11 @@ pipeline {
                 echo 'deploying'
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 // sshCommand remote: remote, command: "pwd; cd Micaela/back; ls;make build; make run"
+                script {
+                    withCredentials(remote[ credentialsId: "remote", , variable: 'REMOTESERVER']) {
+                        sh "ssh ubuntu@192.168.200.35"
+                    }
+                }
             }
         }
     }
