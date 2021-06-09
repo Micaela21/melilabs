@@ -71,3 +71,4 @@ pipeline {
 // conectar servidor remoto ssh ubuntu@192.168.200.35
 // crear key ssh ssh-keygen
 // ingresar contenedor jenkins docker exec -it 24f3447b3f7b bash
+// Ingresar al root del contenedor: docker exec -it -u root {container_id} bash
