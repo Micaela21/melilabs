@@ -56,7 +56,7 @@ pipeline {
         stage('test'){
             steps{
                 // sh 'make sonar'
-                sh 'cd back && npm run sonar'
+                sh 'cd back && npm run sonar -X'
             }
         }
         stage('deploy'){
