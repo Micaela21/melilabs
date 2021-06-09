@@ -45,18 +45,14 @@ pipeline {
             steps {
                 echo 'deploying'
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
-                // sshCommand remote: remote, command: "pwd; cd Micaela/back; ls;make build; make run"
                 script {
-                    def remote = [:]
-                    remote.name = 'ubuntu'
-                    remote.host = '192.168.200.35'
-                    remote.user = 'ubuntu'
-                    remote.password = '$REMOTE_CREDENTIALS_PWS'
-                    remote.allowAnyHosts = true
-                    remote.pty = true
-                    stage('Remote SSH') {
-                    sshCommand remote: remote, command: "-p $REMOTE_CREDENTIALS_PWS"
-                    }
+                def remote = [
+                    name: 'ubuntu',
+                    host: '192.168.200.35',
+                    user: 'ubuntu',
+                    password: '$REMOTE_CREDENTIALS_PWS',
+                    allowAnyHosts: true]
+                sshCommand remote: remote, command: "pwd"
                 }
             }
         }
