@@ -1,18 +1,18 @@
-build:
-	docker build -t melilabs_back .
+# Configurar Back
+config-back:
+	rm -rf build
+	npm install sonar-scanner -g
+	mkdir build
 
-push:
+# Contruyo imagen
+build-image:
+	docker build -t m1c4/melilabs:latest .
+
+# Subo actualizaciones a dockerHub
+push-image:
 	docker login
 	docker push m1c4/melilabs:latest
 
-run-local:
-	docker run -it -p 3001:3001 melilabs_back:latest
-
-run:
-	docker run -it -p 3001:3001 m1c4/melilabs:latest
-
-start:
-	docker stack deploy -c melilabs.yml melilabs
-
-stop:
-	docker stack rm melilabs
+# Correr SonarQube
+sonar:
+	npm run sonar

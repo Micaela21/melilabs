@@ -11,9 +11,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'cd back && rm -rf build && npm install sonar-scanner && mkdir build && ls'
-                sh 'cd client && npm install && npm run build && ls'
-                sh 'cp -r ./client/build/* ./back/build/'
+                dir('./back'){
+                    sh 'make config-back'
+                }
+                dir('./client'){
+                    sh 'make config-client'
+                }
+                sh 'make copy'
             }
         }
         stage('docker-build') {
@@ -21,8 +25,8 @@ pipeline {
                 dir('./back') {
                     script {
                         withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-                            sh "docker build -t m1c4/melilabs:latest ."
-                            sh "docker push m1c4/melilabs:latest"
+                            sh "make build-image"
+                            sh "make push-image"
                         }
                     }
                 }
@@ -30,7 +34,9 @@ pipeline {
         }
         stage('test') {
             steps {
-                sh 'cd back && npm run sonar -X'
+                dir('./back'){
+                    sh 'make sonar'
+                }
             }
         }
         stage('deploy'){
@@ -45,7 +51,7 @@ pipeline {
                         remote.user = "${username}"
                         remote.password = "${password}"
                     }
-                    sshCommand remote: remote, command: "docker run -it -p 3001:3001 m1c4/melilabs:latest; docker ps"
+                    sshCommand remote: remote, command: "cd Micaela/back; make run; docker ps"
                 }
             }
         }
