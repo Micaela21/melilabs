@@ -45,7 +45,7 @@ pipeline {
             steps {
                 echo 'deploying'
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
-                sh 'ssh -p $REMOTE_CREDENTIALS_PSW ubuntu@192.168.200.35'
+                // sh 'ssh -p $REMOTE_CREDENTIALS_PSW ubuntu@192.168.200.35'
                 // script {
                 //     withCredentials([[$class: 'UsernamePasswordMultiBinding', 
                 //     credentialsId:'remote', usernameVariable: 'USER',
@@ -59,6 +59,17 @@ pipeline {
                 //             sshCommand remote: remote, command: "pwd"
                 //     }
                 // }
+                script {                 
+                    def remote = [:]
+                    remote.name = 'ubuntu'
+                    remote.host = '192.168.200.35'
+                    remote.allowAnyHosts = true
+                    withCredentials([usernamePassword(credentialsId: 'remote', passwordVariable: 'password', usernameVariable: 'username')]) {
+                        remote.user = "${username}"
+                        remote.password = "${password}"
+                    }
+                    sshCommand remote: remote, command: "pwd"
+                }
             }
         }
     }
