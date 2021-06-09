@@ -46,13 +46,16 @@ pipeline {
                 echo 'deploying'
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 script {
-                def remote = [
-                    name: 'ubuntu',
-                    host: '192.168.200.35',
-                    user: 'ubuntu',
-                    password: REMOTE_CREDENTIALS_PWS,
-                    allowAnyHosts: true]
-                sshCommand remote: remote, command: "pwd"
+                    withCredentials([usernamePassword(credentialsId: 'remote', passwordVariable: 'remotepassword', usernameVariable: 'remoteusername')]) 
+                    {
+                    def remote = [
+                                name: 'ubuntu',
+                                host: '192.168.200.35',
+                                user: 'remoteusername',
+                                password: 'remotepassword',
+                                allowAnyHosts: true]
+                            sshCommand remote: remote, command: "pwd"
+                            }
                 }
             }
         }
