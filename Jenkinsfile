@@ -10,9 +10,9 @@ pipeline {
     //         // args '-u 0:0'
     //     }
     // }
-    // enviroment {
-    //     UBUNTU_CREDENTIALS = credentials('ubuntu')
-    // }
+    enviroment {
+        PASSWORD = 'remote'
+    }
 
     stages {
         stage('build') {
@@ -44,9 +44,6 @@ pipeline {
             }
         }
         stage('deploy'){
-            enviroment {
-                PASSWORD = 'remote'
-            }
             steps {
                 echo 'deploying'
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
