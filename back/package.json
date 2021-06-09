@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=004e73de5c4cfca0e8580d5fa330878725cc85e0 -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true"
+    "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=fc04c0108c6db2cda4404029b8505f44f7ed44f9 -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true"
   },
   "author": "",
   "license": "ISC",

@@ -12,7 +12,7 @@ pipeline {
     }
 
     stages {
-        stage('build'){
+        stage('build') {
             steps {
                 // sh 'make back'
                 // sh 'make client'
@@ -22,39 +22,20 @@ pipeline {
                 sh 'cp -r ./client/build/* ./back/build/'
             }
         }
-        stage('docker-build'){
-            steps{
+        stage('docker-build') {
+            steps {
                 dir('./back') {
-                    script{
+                    script {
                         withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
                             sh "docker build -t m1c4/melilabs:latest ."
                             sh "docker push m1c4/melilabs:latest"
                         }
                     }
-                    // script{
-                    //     withCredentials([usernamePassword( credentialsId: 'dockerHub', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
-                    //     def registry_url = "registry.hub.docker.com/"
-                    //     sh "docker login -u $USER -p $PASSWORD ${registry_url}"
-                    //     docker.withRegistry("http://${registry_url}", "dockerHub") {
-                    //         // Push your image now
-                    //         sh "docker push m1c4/melilabs:latest"
-                    //         }
-                    //     }
-
-                    // script{
-                    //     def customImage = docker.build("melilabs:latest")
-                    //     customImage.push('m1c4/melilabs:latest')
-                    // }
                 }
-                // docker.withRegistry('https://hub.docker.com', 'dockerHub') {
-                //     def customImage = docker.build("my-image:${env.BUILD_ID}")
-                //     customImage.push()
-                //     } 
-                // sh 'cd back && docker build -t melilabs . && docker login && docker push m1c4/melilabs:latest'
             }
         }
-        stage('test'){
-            steps{
+        stage('test') {
+            steps {
                 // sh 'make sonar'
                 sh 'cd back && npm run sonar -X'
             }

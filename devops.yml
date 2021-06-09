@@ -1,3 +1,4 @@
+  
 version: "3.8"
 
 services:
@@ -9,7 +10,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/jenkins_home/:/var/jenkins_home/
       - /usr/bin/docker:/usr/bin/docker
+    networks:
+      tsoft-net:
   sonarqube:
     image: sonarqube:lts
     ports:
       - "9000:9000"
+    volumes:
+      - /opt/sonarqube/data:/opt/sonarqube/data
+    networks:
+      tsoft-net:
+
+networks:
+  tsoft-net:
