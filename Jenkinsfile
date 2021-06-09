@@ -1,10 +1,6 @@
-// def remote = [name: 'ubuntu', host: '192.168.200.35', user: 'ubuntu', password: ${env.HOST_PASSWORD}, allowAnyHosts: true]
 
 pipeline {
     agent any
-    environment {
-        REMOTE_CREDENTIALS = credentials('remote')
-    }
     tools {nodejs "node"}
     // agent {
     //     docker {
@@ -15,9 +11,6 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                // sh 'make back'
-                // sh 'make client'
-                // sh 'make copy'
                 sh 'cd back && rm -rf build && npm install sonar-scanner && mkdir build && ls'
                 sh 'cd client && npm install && npm run build && ls'
                 sh 'cp -r ./client/build/* ./back/build/'
@@ -37,28 +30,12 @@ pipeline {
         }
         stage('test') {
             steps {
-                // sh 'make sonar'
                 sh 'cd back && npm run sonar -X'
             }
         }
         stage('deploy'){
             steps {
                 echo 'deploying'
-                // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
-                // sh 'ssh -p $REMOTE_CREDENTIALS_PSW ubuntu@192.168.200.35'
-                // script {
-                //     withCredentials([[$class: 'UsernamePasswordMultiBinding', 
-                //     credentialsId:'remote', usernameVariable: 'USER',
-                //     passwordVariable: 'PASSWORD']]) {
-                //     def remote = [
-                //                 name: 'ubuntu',
-                //                 host: '192.168.200.35',
-                //                 user: 'ubuntu',
-                //                 password: $PASSWORD,
-                //                 allowAnyHosts: true]
-                //             sshCommand remote: remote, command: "pwd"
-                //     }
-                // }
                 script {                 
                     def remote = [:]
                     remote.name = 'ubuntu'
@@ -68,7 +45,7 @@ pipeline {
                         remote.user = "${username}"
                         remote.password = "${password}"
                     }
-                    sshCommand remote: remote, command: "pwd"
+                    sshCommand remote: remote, command: "docker run -it -p 3001:3001 m1c4/melilabs:latest; docker ps"
                 }
             }
         }
