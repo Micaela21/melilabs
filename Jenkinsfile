@@ -45,19 +45,20 @@ pipeline {
             steps {
                 echo 'deploying'
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
-                script {
-                    withCredentials([[$class: 'UsernamePasswordMultiBinding', 
-                    credentialsId:'remote', usernameVariable: 'USER',
-                    passwordVariable: 'PASSWORD']]) {
-                    def remote = [
-                                name: 'ubuntu',
-                                host: '192.168.200.35',
-                                user: 'ubuntu',
-                                password: $PASSWORD,
-                                allowAnyHosts: true]
-                            sshCommand remote: remote, command: "pwd"
-                    }
-                }
+                sh 'ssh -p $REMOTE_CREDENTIALS_PSW ubuntu@192.168.200.35'
+                // script {
+                //     withCredentials([[$class: 'UsernamePasswordMultiBinding', 
+                //     credentialsId:'remote', usernameVariable: 'USER',
+                //     passwordVariable: 'PASSWORD']]) {
+                //     def remote = [
+                //                 name: 'ubuntu',
+                //                 host: '192.168.200.35',
+                //                 user: 'ubuntu',
+                //                 password: $PASSWORD,
+                //                 allowAnyHosts: true]
+                //             sshCommand remote: remote, command: "pwd"
+                //     }
+                // }
             }
         }
     }
