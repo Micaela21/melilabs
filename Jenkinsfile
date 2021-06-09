@@ -10,6 +10,9 @@ pipeline {
     //         // args '-u 0:0'
     //     }
     // }
+    // enviroment {
+    //     UBUNTU_CREDENTIALS = credentials('ubuntu')
+    // }
 
     stages {
         stage('build') {
@@ -41,11 +44,25 @@ pipeline {
             }
         }
         stage('deploy'){
+            enviroment {
+                PASSWORD = 'remote'
+            }
             steps {
                 echo 'deploying'
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 // sshCommand remote: remote, command: "pwd; cd Micaela/back; ls;make build; make run"
-                sh "ssh ubuntu@192.168.200.35 pwd"
+                script {
+                    def remote = [:]
+                    remote.name = 'ubuntu'
+                    remote.host = '192.168.200.35'
+                    remote.user = 'ubuntu'
+                    remote.password = 'PASSWORD'
+                    remote.allowAnyHosts = true
+                    stage('Remote SSH') {
+                    sshCommand remote: remote, command: "ls -lrt"
+                    sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
+                    }
+                }
             }
         }
     }
