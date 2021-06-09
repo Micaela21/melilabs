@@ -2,7 +2,9 @@
 
 pipeline {
     agent any
-
+    environment {
+        REMOTE_CREDENTIALS = credentials('remote')
+    }
     tools {nodejs "node"}
     // agent {
     //     docker {
@@ -10,10 +12,6 @@ pipeline {
     //         // args '-u 0:0'
     //     }
     // }
-    enviroment {
-        PASSWORD = 'remote'
-    }
-
     stages {
         stage('build') {
             steps {
@@ -52,8 +50,8 @@ pipeline {
                     def remote = [:]
                     remote.name = 'ubuntu'
                     remote.host = '192.168.200.35'
-                    remote.user = 'ubuntu'
-                    remote.password = 'PASSWORD'
+                    remote.user = '$REMOTE_CREDENTIALS_USR'
+                    remote.password = '$REMOTE_CREDENTIALS_PWS'
                     remote.allowAnyHosts = true
                     stage('Remote SSH') {
                     sshCommand remote: remote, command: "ls -lrt"
