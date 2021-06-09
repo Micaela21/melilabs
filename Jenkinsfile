@@ -55,7 +55,7 @@ pipeline {
                     remote.allowAnyHosts = true
                     remote.pty = true
                     stage('Remote SSH') {
-                    sshCommand remote: remote, command: "pwd"
+                    sshCommand remote: remote, command: "-p $REMOTE_CREDENTIALS_PWS"
                     }
                 }
             }
