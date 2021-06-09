@@ -53,6 +53,7 @@ pipeline {
                     remote.user = '$REMOTE_CREDENTIALS_USR'
                     remote.password = '$REMOTE_CREDENTIALS_PWS'
                     remote.allowAnyHosts = true
+                    remote.pty = true
                     stage('Remote SSH') {
                     sshCommand remote: remote, command: "pwd"
                     }
