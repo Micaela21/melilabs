@@ -50,7 +50,7 @@ pipeline {
                     name: 'ubuntu',
                     host: '192.168.200.35',
                     user: 'ubuntu',
-                    password: ${REMOTE_CREDENTIALS_PWS},
+                    password: REMOTE_CREDENTIALS_PWS,
                     allowAnyHosts: true]
                 sshCommand remote: remote, command: "pwd"
                 }
