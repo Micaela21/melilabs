@@ -47,7 +47,9 @@ pipeline {
                 echo $REMOTE_CREDENTIALS_PSW
                 // sh 'scp -r ./back ubuntu@192.168.200.35:/home/ubuntu/Micaela'
                 script {
-                    // withCredentials([usernamePassword(credentialsId: 'remote', passwordVariable: 'remotepassword', usernameVariable: 'remoteusername')]) {
+                    withCredentials([[$class: 'UsernamePasswordMultiBinding', 
+                    credentialsId:'remote', usernameVariable: 'remoteuser',
+                    passwordVariable: 'remotepass']]) {
                     def remote = [
                                 name: 'ubuntu',
                                 host: '192.168.200.35',
@@ -55,7 +57,7 @@ pipeline {
                                 password: $REMOTE_CREDENTIALS_PSW,
                                 allowAnyHosts: true]
                             sshCommand remote: remote, command: "pwd"
-                            // }
+                    }
                 }
             }
         }
