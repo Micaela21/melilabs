@@ -50,7 +50,7 @@ pipeline {
                     def remote = [:]
                     remote.name = 'ubuntu'
                     remote.host = '192.168.200.35'
-                    remote.user = '$REMOTE_CREDENTIALS_USR'
+                    remote.user = 'ubuntu'
                     remote.password = '$REMOTE_CREDENTIALS_PWS'
                     remote.allowAnyHosts = true
                     remote.pty = true
