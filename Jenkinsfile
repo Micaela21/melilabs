@@ -51,7 +51,7 @@ pipeline {
                         remote.user = "${username}"
                         remote.password = "${password}"
                     }
-                    sshCommand remote: remote, command: "docker run -it -p 3001:3001 m1c4/melilabs:latest; docker ps"
+                    sshCommand remote: remote, command: "docker run -t -p 3001:3001 m1c4/melilabs:latest; docker ps"
                 }
             }
         }
