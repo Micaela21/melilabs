@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                sh 'pwd'
                 dir('./back'){
                     sh 'make config-back'
                 }

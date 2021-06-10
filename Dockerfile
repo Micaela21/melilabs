@@ -12,4 +12,7 @@ RUN apk add openjdk11-jre \
 RUN apk add --update nodejs npm \
     && node -v
 
+RUN mkdir /root/.npm \
+    && chown -R 1000:1000 "/root/.npm"
+
 SHELL ["/bin/bash", "-o", "pipefail"]
