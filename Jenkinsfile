@@ -4,7 +4,7 @@ pipeline {
     // tools {nodejs "node"}
   agent {
     docker { image 'alpinejn:latest'
-            args '-u 0:0'
+            args '-u 0:0 -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker'
     }
   }
     stages {
