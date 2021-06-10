@@ -10,8 +10,8 @@ RUN apk add openjdk11-jre \
     && java -version
 
 # RUN apk add docker
-# # Install Docker from Docker Inc. repositories.
-# # RUN curl -sSL https://get.docker.com/ | sh
+# Install Docker from Docker Inc. repositories.
+# RUN curl -sSL https://get.docker.com/ | sh
 
 # # Install the magic wrapper.
 # ADD ./wrapdocker /usr/local/bin/wrapdocker
@@ -21,7 +21,7 @@ RUN apk add openjdk11-jre \
 # VOLUME /var/lib/docker
 # CMD ["wrapdocker"]
 
-VOLUME /var/run/docker.sock
-VOLUME /usr/bin/docker
+# VOLUME /var/run/docker.sock
+# VOLUME /usr/bin/docker
 
 ENTRYPOINT ["docker-entrypoint.sh"]

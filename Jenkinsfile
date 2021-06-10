@@ -1,18 +1,19 @@
 
 pipeline {
-    // agent any
+    agent any
     // tools {nodejs "node"}
-  agent {
-    docker { image 'alpinejn:latest'
-            args '-u 0:0 -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker'
-    }
-  }
     stages {
         stage('build') {
+              agent {
+                docker { image 'alpinejn:latest'
+                        args '-u 0:0 '
+                }
+            }
             steps {
                 sh 'pwd'
                 dir('./back'){
                     sh 'rm -rf build && npm install sonar-scanner -g && mkdir build'
+                    sh 'make sonar'
                 }
                 dir('./client'){
                     sh 'npm install && npm run build'
@@ -29,13 +30,6 @@ pipeline {
                             sh "docker push m1c4/melilabs:latest"
                         }
                     }
-                }
-            }
-        }
-        stage('test') {
-            steps {
-                dir('./back'){
-                    sh 'make sonar'
                 }
             }
         }
