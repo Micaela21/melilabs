@@ -1,13 +1,13 @@
 
 pipeline {
-    agent any
-    tools {nodejs "node"}
-    // agent {
-    //     docker {
-    //         image 'node:latest'
-    //         // args '-u 0:0'
-    //     }
-    // }
+    // agent any
+    // tools {nodejs "node"}
+    agent {
+        docker {
+            image 'alpinejn:latest'
+            // args '-u 0:0'
+        }
+    }
     stages {
         stage('build') {
             steps {
@@ -51,7 +51,7 @@ pipeline {
                         remote.user = "${username}"
                         remote.password = "${password}"
                     }
-                    sshCommand remote: remote, command: "docker run -t -p 3001:3001 m1c4/melilabs:latest; docker ps"
+                    sshCommand remote: remote, command: "docker run -td -p 3001:3001 m1c4/melilabs:latest; docker ps"
                 }
             }
         }
