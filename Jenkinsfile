@@ -24,8 +24,8 @@ pipeline {
             steps {
                 dir('./back') {
                     script {
+                        sh "docker build -t m1c4/melilabs:latest ."
                         withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-                            sh "docker build -t m1c4/melilabs:latest ."
                             sh "docker push m1c4/melilabs:latest"
                         }
                     }
