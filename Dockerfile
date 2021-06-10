@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+USER root
+
 RUN apk update \
     && apk add curl \
     && apk add make
