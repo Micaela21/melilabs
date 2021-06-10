@@ -15,4 +15,6 @@ RUN apk add --update nodejs npm \
 RUN mkdir /root/.npm \
     && chown -R 1000:1000 "/root/.npm"
 
-SHELL ["/bin/bash", "-o", "pipefail"]
+WORKDIR /root
+
+ENTRYPOINT ["docker-entrypoint.sh"]
