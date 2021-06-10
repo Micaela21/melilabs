@@ -3,7 +3,9 @@ pipeline {
     // agent any
     // tools {nodejs "node"}
   agent {
-    docker { image 'node:alpine3.13' }
+    docker { image 'node:alpine3.13'
+        args '-u 0:0'
+    }
   }
     stages {
         stage('build') {
