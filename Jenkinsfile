@@ -10,12 +10,12 @@ pipeline {
             steps {
                 sh 'pwd'
                 dir('./back'){
-                    sh 'make config-back'
+                    sh 'rm -rf build && npm install sonar-scanner -g && mkdir build'
                 }
                 dir('./client'){
-                    sh 'make config-client'
+                    sh 'npm install && npm run build'
                 }
-                sh 'make copy'
+                sh 'cp -r ./client/build/* ./back/build/'
             }
         }
         stage('docker-build') {
@@ -23,8 +23,8 @@ pipeline {
                 dir('./back') {
                     script {
                         withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-                            sh "make build-image"
-                            sh "make push-image"
+                            sh "docker build -t m1c4/melilabs:latest ."
+                            sh "docker push m1c4/melilabs:latest"
                         }
                     }
                 }
