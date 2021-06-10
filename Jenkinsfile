@@ -5,7 +5,7 @@ pipeline {
     agent {
         docker {
             image 'alpinejn:latest'
-            // args '-u 0:0'
+            args '-u 0:0'
         }
     }
     stages {
