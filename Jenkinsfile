@@ -3,8 +3,8 @@ pipeline {
     // agent any
     // tools {nodejs "node"}
   agent {
-    docker { image 'node:alpine3.13'
-        args '-u 0:0'
+    docker { image 'alpinejn:latest'
+            args '-u 0:0'
     }
   }
     stages {

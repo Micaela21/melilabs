@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM node:alpine3.13
 
 USER root
 
@@ -7,14 +7,6 @@ RUN apk update \
     && apk add make
 
 RUN apk add openjdk11-jre \
-    && java -version 
-
-RUN apk add --update nodejs npm \
-    && node -v
-
-RUN mkdir /root/.npm \
-    && chown -R 1000:1000 "/root/.npm"
-
-WORKDIR /root
+    && java -version
 
 ENTRYPOINT ["docker-entrypoint.sh"]
