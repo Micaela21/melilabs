@@ -1,7 +1,7 @@
 # Configurar Back
 config-back:
 	rm -rf build
-	npm install sonar-scanner
+# npm install sonar-scanner
 	mkdir build
 
 # Contruyo imagen
