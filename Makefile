@@ -5,8 +5,8 @@ run-jenkins:
 # Pushear al repo de github
 push-git:
 	git add .
-	git commit -m 'pipeline'
-	git push --set-upstream origin pipeline
+	git commit -m 'agente'
+	git push --set-upstream origin agentedocker
 
 # Copiar carpeta build al back para despliegue
 copy:
