@@ -4,11 +4,15 @@ pipeline {
     stages {
         stage('build') {
               agent {
+                  // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
+                  // node y correr test con sonar-scanner
                 docker { image 'm1c4/alpinejn:latest'
                         args '-u 0:0 '
                 }
             }
             steps {
+                // Preparo back y front para poder hacer un deploy luego
+                // Corro el test con sonar
                 dir('./back'){
                     sh 'make config-back'
                     sh 'make sonar'
@@ -21,6 +25,7 @@ pipeline {
         }
         stage('docker-build') {
             steps {
+                // Actualizo la imagen de la app en dockerHub
                 dir('./back') {
                     script {
                         sh "docker build -t m1c4/melilabs:latest ."
@@ -33,7 +38,7 @@ pipeline {
         }
         stage('deploy'){
             steps {
-                echo 'deploying'
+                // Conecto con el servidor y corro la imagen de la aplicacion 
                 script {                 
                     def remote = [:]
                     remote.name = 'ubuntu'
