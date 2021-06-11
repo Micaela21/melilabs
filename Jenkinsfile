@@ -1,15 +1,12 @@
 
 pipeline {
+    // Uso agente por default y ultilizo tools para instalar node en el entorno
+    // Lo configuro desde la UI de jenkins
     agent any
     tools {nodejs "node"}
-    // agent {
-    //     docker {
-    //         image 'node:latest'
-    //         // args '-u 0:0'
-    //     }
-    // }
     stages {
         stage('build') {
+            // Preparo back y front para poder hacer un deploy luego
             steps {
                 dir('./back'){
                     sh 'make config-back'
@@ -20,18 +17,7 @@ pipeline {
                 sh 'make copy'
             }
         }
-        stage('docker-build') {
-            steps {
-                dir('./back') {
-                    script {
-                        withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-                            sh "make build-image"
-                            sh "make push-image"
-                        }
-                    }
-                }
-            }
-        }
+        // Corro el test con sonar
         stage('test') {
             steps {
                 dir('./back'){
@@ -39,9 +25,22 @@ pipeline {
                 }
             }
         }
+        stage('docker-build') {
+            steps {
+                // Actualizo la imagen de la app en dockerHub
+                dir('./back') {
+                    script {
+                        sh "make build-image"
+                        withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
+                            sh "make push-image"
+                        }
+                    }
+                }
+            }
+        }
         stage('deploy'){
             steps {
-                echo 'deploying'
+                // Conecto con el servidor y corro la imagen de la aplicacion 
                 script {                 
                     def remote = [:]
                     remote.name = 'ubuntu'
@@ -51,7 +50,8 @@ pipeline {
                         remote.user = "${username}"
                         remote.password = "${password}"
                     }
-                    sshCommand remote: remote, command: "docker run -t -p 3001:3001 m1c4/melilabs:latest; docker ps"
+                    sshCommand remote: remote, command: "docker rm -f melilabsserver"
+                    sshCommand remote: remote, command: "docker run --name melilabsserver -td -p 3001:3001 m1c4/melilabs:latest; docker ps"
                 }
             }
         }
