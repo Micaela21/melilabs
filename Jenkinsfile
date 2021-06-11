@@ -1,24 +1,22 @@
 
 pipeline {
     agent any
-    // tools {nodejs "node"}
     stages {
         stage('build') {
               agent {
-                docker { image 'alpinejn:latest'
+                docker { image 'm1c4/alpinejn:latest'
                         args '-u 0:0 '
                 }
             }
             steps {
-                sh 'pwd'
                 dir('./back'){
-                    sh 'rm -rf build && npm install sonar-scanner -g && mkdir build'
+                    sh 'make config-back'
                     sh 'make sonar'
                 }
                 dir('./client'){
-                    sh 'npm install && npm run build'
+                    sh 'make config-client'
                 }
-                sh 'cp -r ./client/build/* ./back/build/'
+                sh 'make copy'
             }
         }
         stage('docker-build') {
