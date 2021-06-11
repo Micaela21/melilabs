@@ -56,8 +56,7 @@ pipeline {
     }
 }
 
-// conectar servidor remoto ssh ubuntu@192.168.200.35
+// conectar servidor remoto: ssh ubuntu@192.168.200.35
 // crear key ssh: ssh-keygen
 // ingresar contenedor jenkins: docker exec -it 24f3447b3f7b bash
 // Ingresar al root del contenedor: docker exec -it -u root {container_id} bash
-// "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://192.168.200.35:9000 -Dsonar.login=9a02607543fa33e69d161ba644336bed2022e291 -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true"
