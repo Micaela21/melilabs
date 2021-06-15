@@ -13,14 +13,17 @@ pipeline {
             steps {
                 // Preparo back y front para poder hacer un deploy luego
                 // Corro el test con sonar
-                dir('./back'){
-                    sh 'make config-back'
-                    // sh 'make sonar'
-                }
                 dir('./client'){
                     sh 'make config-client'
                 }
                 sh 'make copy'
+                dir('./back'){
+                    sh 'make config-back'
+                    // sh 'make sonar'
+                    browserstack(credentialsId: '4d2af666-94f8-4385-a478-689f2532932a') {
+                        sh 'npm run selenium'
+                    }
+                }
             }
         }
         stage('docker-build') {

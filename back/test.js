@@ -5,15 +5,20 @@ async function runTestWithCaps (capabilities) {
     .usingServer('http://micaelaalessandr_NFZVM2:SizykP6rm7z99TRGsL9g@hub-cloud.browserstack.com/wd/hub')
     .withCapabilities({
       ...capabilities,
-      ...capabilities['browser'] && { browserName: capabilities['browser']}  // Because NodeJS language binding requires browserName to be defined
+      ...capabilities['browser'] && { browserName: capabilities['browser']}
     })
     .build();
-  await driver.get("https://635365313f9f.ngrok.io");
+  await driver.get("https://07343a31fb34.ngrok.io");
+
   const inputField = await driver.findElement(webdriver.By.name("search"))
-  await inputField.sendKeys("zapatillas"); // this submits on desktop browsers
+  await inputField.sendKeys("zapatillas");
+
   const enter = await driver.findElement(webdriver.By.name("button"))
   await enter.click()
-//   await driver.wait(webdriver.until.elementIsVisible(webdriver.By.className("product")),10000)
+
+  const mayor = await driver.findElement(webdriver.By.name("mayor"))
+  await mayor.click()
+
   try {
     await driver.executeScript(
       'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed","reason": "funciona"}}'

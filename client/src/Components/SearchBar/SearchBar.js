@@ -44,7 +44,7 @@ function SearchBar() {
   };
 
   return (
-    <Paper component="form" className={classes.root} onSubmit={handleSearch}>
+    <Paper component="form" className={classes.root} onSubmit={handleSearch} name='form'>
       <InputBase
         className={classes.input}
         placeholder="ej. zapatilla, computadoras, etc"
