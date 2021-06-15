@@ -51,6 +51,7 @@ function SearchBar() {
         inputProps={"aria-label"}
         value={keyword}
         onChange={handleChange}
+        name='search'
       />
       <Divider className={classes.divider} orientation="vertical" />
       <IconButton

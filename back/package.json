@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://192.168.200.35:9000 -Dsonar.login=9a02607543fa33e69d161ba644336bed2022e291 -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true"
+    "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://192.168.200.35:9000 -Dsonar.login=9a02607543fa33e69d161ba644336bed2022e291 -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true",
+    "selenium": "node test.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,10 +14,12 @@
     "axios": "^0.21.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "helmet": "^4.6.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7",
-    "sonar-scanner":"^3.1.0"
+    "sonar-scanner": "^3.1.0",
+    "selenium-webdriver": "^4.0.0-beta.4"
   }
 }
