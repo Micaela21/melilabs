@@ -55,6 +55,7 @@ function SearchBar() {
       />
       <Divider className={classes.divider} orientation="vertical" />
       <IconButton
+        name='button'
         type="submit"
         className={classes.iconButton}
         aria-label="search"

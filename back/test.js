@@ -8,14 +8,12 @@ async function runTestWithCaps (capabilities) {
       ...capabilities['browser'] && { browserName: capabilities['browser']}  // Because NodeJS language binding requires browserName to be defined
     })
     .build();
-  await driver.get("https://9f8510720343.ngrok.io");
+  await driver.get("https://635365313f9f.ngrok.io");
   const inputField = await driver.findElement(webdriver.By.name("search"))
-  await inputField.sendKeys("zapatillas", webdriver.Key.ENTER); // this submits on desktop browsers
-  try {
-    await inputField.wait(webdriver.until.findElements(webdriver.By.cssSelector('.product', 5000);
-  } catch (e) {
-    await inputField.submit(); // this helps in mobile browsers
-  }
+  await inputField.sendKeys("zapatillas"); // this submits on desktop browsers
+  const enter = await driver.findElement(webdriver.By.name("button"))
+  await enter.click()
+//   await driver.wait(webdriver.until.elementIsVisible(webdriver.By.className("product")),10000)
   try {
     await driver.executeScript(
       'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed","reason": "funciona"}}'
