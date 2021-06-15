@@ -15,7 +15,7 @@ pipeline {
                 // Corro el test con sonar
                 dir('./back'){
                     sh 'make config-back'
-                    sh 'make sonar'
+                    // sh 'make sonar'
                 }
                 dir('./client'){
                     sh 'make config-client'
@@ -60,3 +60,4 @@ pipeline {
 // crear key ssh: ssh-keygen
 // ingresar contenedor jenkins: docker exec -it 24f3447b3f7b bash
 // Ingresar al root del contenedor: docker exec -it -u root {container_id} bash
+// permiso docker: sudo chmod 666 /var/run/docker.sock
