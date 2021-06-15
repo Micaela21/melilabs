@@ -16,8 +16,8 @@ async function runTestWithCaps (capabilities) {
   const enter = await driver.findElement(webdriver.By.name("button"))
   await enter.click()
 
-  const mayor = await driver.findElement(webdriver.By.name("mayor"))
-  const timer = await driver.wait(webdriver.until.elementIsVisible(mayor), 5000);
+//   const mayor = await driver.findElement(webdriver.By.name("mayor"))
+  const timer = await driver.wait(webdriver.until.findElement(webdriver.By.name("mayor")), 5000);
   if(timer){
     mayor.click()
   }
