@@ -1,4 +1,5 @@
 const webdriver = require('selenium-webdriver');
+
 async function runTestWithCaps (capabilities) {
   let driver = new webdriver.Builder()
     .usingServer('http://micaelaalessandr_NFZVM2:SizykP6rm7z99TRGsL9g@hub-cloud.browserstack.com/wd/hub')
@@ -11,7 +12,7 @@ async function runTestWithCaps (capabilities) {
   const inputField = await driver.findElement(webdriver.By.name("search"))
   await inputField.sendKeys("zapatillas", webdriver.Key.ENTER); // this submits on desktop browsers
   try {
-    await driver.wait(webdriver.until.urlContains(/zapatillas/i), 5000);
+    await driver.wait(inputField.executeScript('return arguments[0].innerHTML', body), 5000);
   } catch (e) {
     await inputField.submit(); // this helps in mobile browsers
   }
