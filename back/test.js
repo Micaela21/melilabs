@@ -12,19 +12,17 @@ async function runTestWithCaps (capabilities) {
   const inputField = await driver.findElement(webdriver.By.name("search"))
   await inputField.sendKeys("zapatillas", webdriver.Key.ENTER); // this submits on desktop browsers
   try {
-    await driver.wait(inputField.executeScript('return arguments[0].innerHTML', body), 5000);
+    await inputField.wait(webdriver.until.findElements(webdriver.By.cssSelector('.product', 5000);
   } catch (e) {
     await inputField.submit(); // this helps in mobile browsers
   }
   try {
-    await driver.wait(webdriver.until.urlContains(/zapatillas/i), 5000);
-    console.log(await driver.getTitle());
     await driver.executeScript(
-      'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed","reason": "Title contains BrowserStack!"}}'
+      'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed","reason": "funciona"}}'
     );
   } catch (e) {
     await driver.executeScript(
-      'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed","reason": "Page could not load in time"}}'
+      'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed","reason": "no funciona"}}'
     );
   }
   await driver.quit();

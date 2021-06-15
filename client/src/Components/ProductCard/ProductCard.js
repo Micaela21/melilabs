@@ -52,7 +52,7 @@ function ProductCard({ props }) {
   const classes = useStyles({ color: "#fff59d" });
 
   return (
-    <div>
+    <div className='product'>
       <Card className={classes.card}>
         <CardMedia className={classes.media} image={props.thumbnail} />
         <CardContent className={classes.content}>
