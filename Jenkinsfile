@@ -20,7 +20,7 @@ pipeline {
                 dir('./back'){
                     sh 'make config-back'
                     // sh 'make sonar'
-                    browserstack(credentialsId: '4d2af666-94f8-4385-a478-689f2532932a', localConfig: [localOptions: '<local-options>', localPath: '']) {
+                    browserstack(credentialsId: '4d2af666-94f8-4385-a478-689f2532932a') {
                         sh 'npm run selenium'
                     }
                 }

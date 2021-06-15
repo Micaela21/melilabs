@@ -8,7 +8,7 @@ async function runTestWithCaps (capabilities) {
       ...capabilities['browser'] && { browserName: capabilities['browser']}
     })
     .build();
-  await driver.get("http://localhost:3001/");
+  await driver.get("https://07343a31fb34.ngrok.io/");
 
   const inputField = await driver.findElement(webdriver.By.name("search"))
   await inputField.sendKeys("zapatillas");
