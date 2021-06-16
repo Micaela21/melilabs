@@ -5,8 +5,8 @@ run-jenkins:
 # Pushear al repo de github
 push-git:
 	git add .
-	git commit -m 'agente'
-	git push --set-upstream origin agentedocker
+	git commit -m 'multiple agents'
+	git push --set-upstream origin multipleAgents
 
 # Copiar carpeta build al back para despliegue
 copy:
