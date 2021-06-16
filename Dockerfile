@@ -6,6 +6,4 @@ RUN apt update \
     && apt install curl \
     && apt install make
 
-RUN sudo apt-get install -y nodejs     
-
-ENTRYPOINT ["docker-entrypoint.sh"]
+RUN sudo apt-get install -y nodejs
