@@ -1,39 +1,25 @@
-
 pipeline {
     agent any
     stages {
         stage('build') {
             agent {
                 // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
-                docker {
-                    image 'm1c4/alpinejn:latest'
-                    args '-u 0:0 '
+                // node y correr test con sonar-scanner
+                docker { image 'm1c4/alpinejn:latest'
+                        args '-u 0:0 '
                 }
             }
             steps {
-                // Preparo back y front
+                // Preparo back y front para poder hacer un deploy luego
+                // Corro el test con sonar
                 dir('./back') {
                     sh 'make config-back'
+                // sh 'make sonar'
                 }
                 dir('./client') {
                     sh 'make config-client'
                 }
                 sh 'make copy'
-            }
-        }
-        stage('test') {
-            agent {
-                // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
-                docker {
-                    image 'selenium/node-chrome:91.0'
-                }
-            }
-            steps {
-                // Ejecuto test sonar y test selenium
-                dir('./back') {
-                    // sh 'make sonar'
-                    sh 'cd Test && node seleniumTest.js'
-                }
             }
         }
         stage('docker-build') {
