@@ -6,7 +6,7 @@ pipeline {
               agent {
                   // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
                   // node y correr test con sonar-scanner
-                docker { image 'm1c4/alpinejn:latest'
+                docker { image 'alpinejn'
                         args '-u 0:0 '
                 }
             }
@@ -20,9 +20,7 @@ pipeline {
                 dir('./back'){
                     sh 'make config-back'
                     // sh 'make sonar'
-                    browserstack(credentialsId: '4d2af666-94f8-4385-a478-689f2532932a') {
-                        sh 'npm run selenium'
-                    }
+                    sh 'cd /Test && node seleniumTest.js'
                 }
             }
         }
