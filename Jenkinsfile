@@ -20,7 +20,7 @@ pipeline {
                 dir('./back'){
                     sh 'make config-back'
                     // sh 'make sonar'
-                    sh 'cd /Test && node seleniumTest.js'
+                    sh 'cd Test && node seleniumTest.js'
                 }
             }
         }
