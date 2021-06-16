@@ -3,24 +3,37 @@ pipeline {
     agent any
     stages {
         stage('build') {
-              agent {
-                  // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
-                  // node y correr test con sonar-scanner
-                docker { image 'm1c4/alpinejn:latest'
-                        args '-u 0:0 '
+            agent {
+                // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
+                docker {
+                    image 'm1c4/alpinejn:latest'
+                    args '-u 0:0 '
                 }
             }
             steps {
-                // Preparo back y front para poder hacer un deploy luego
-                // Corro el test con sonar
-                dir('./back'){
+                // Preparo back y front
+                dir('./back') {
                     sh 'make config-back'
-                    // sh 'make sonar'
                 }
-                dir('./client'){
+                dir('./client') {
                     sh 'make config-client'
                 }
                 sh 'make copy'
+            }
+        }
+        stage('test') {
+            agent {
+                // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
+                docker {
+                    image 'selenium/node-chrome:91.0'
+                }
+            }
+            steps {
+                // Ejecuto test sonar y test selenium
+                dir('./back') {
+                    // sh 'make sonar'
+                    sh 'cd Test && node seleniumTest.js'
+                }
             }
         }
         stage('docker-build') {
@@ -28,18 +41,18 @@ pipeline {
                 // Actualizo la imagen de la app en dockerHub
                 dir('./back') {
                     script {
-                        sh "docker build -t m1c4/melilabs:latest ."
-                        withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-                            sh "docker push m1c4/melilabs:latest"
+                        sh 'docker build -t m1c4/melilabs:latest .'
+                        withDockerRegistry([ credentialsId: 'dockerHub', url: '' ]) {
+                            sh 'docker push m1c4/melilabs:latest'
                         }
                     }
                 }
             }
         }
-        stage('deploy'){
+        stage('deploy') {
             steps {
-                // Conecto con el servidor y corro la imagen de la aplicacion 
-                script {                 
+                // Conecto con el servidor y corro la imagen de la aplicacion
+                script {
                     def remote = [:]
                     remote.name = 'ubuntu'
                     remote.host = '192.168.200.35'
@@ -48,8 +61,8 @@ pipeline {
                         remote.user = "${username}"
                         remote.password = "${password}"
                     }
-                    sshCommand remote: remote, command: "docker rm -f melilabsserver"
-                    sshCommand remote: remote, command: "docker run --name melilabsserver -td -p 3001:3001 m1c4/melilabs:latest; docker ps"
+                    sshCommand remote: remote, command: 'docker rm -f melilabsserver'
+                    sshCommand remote: remote, command: 'docker run --name melilabsserver -td -p 3001:3001 m1c4/melilabs:latest; docker ps'
                 }
             }
         }
