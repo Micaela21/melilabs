@@ -6,7 +6,7 @@ pipeline {
               agent {
                   // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
                   // node y correr test con sonar-scanner
-                docker { image 'alpinejn'
+                docker { image 'selenium/node-chrome:91.0'
                         args '-u 0:0 '
                 }
             }
