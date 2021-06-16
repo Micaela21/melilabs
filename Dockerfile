@@ -9,6 +9,5 @@ RUN apk update \
 RUN apk add openjdk11-jre \
     && java -version
 
-RUN apk add chromium    
 
 ENTRYPOINT ["docker-entrypoint.sh"]

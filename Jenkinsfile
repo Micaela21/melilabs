@@ -6,22 +6,21 @@ pipeline {
               agent {
                   // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
                   // node y correr test con sonar-scanner
-                docker { image 'selenium/node-chrome:91.0'
+                docker { image 'm1c4/alpinejn:latest'
                         args '-u 0:0 '
                 }
             }
             steps {
                 // Preparo back y front para poder hacer un deploy luego
                 // Corro el test con sonar
+                dir('./back'){
+                    sh 'make config-back'
+                    // sh 'make sonar'
+                }
                 dir('./client'){
                     sh 'make config-client'
                 }
                 sh 'make copy'
-                dir('./back'){
-                    sh 'make config-back'
-                    // sh 'make sonar'
-                    sh 'cd Test && node seleniumTest.js'
-                }
             }
         }
         stage('docker-build') {
