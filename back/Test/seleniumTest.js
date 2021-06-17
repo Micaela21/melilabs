@@ -14,13 +14,6 @@ var driver = new webdriver.Builder()
   .setChromeOptions(options)
   .build();
 
-// driver.get("http://www.google.com").then(() => {
-//   var q = driver.findElement(By.name("q"));
-//   console.log(q)
-//   q.sendKeys("webdriver")
-//   driver.quit();
-// });
-
 async function test(){
   let page = await driver.get("https://c49c14a3c41f.ngrok.io")
   try {
