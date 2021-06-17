@@ -81,7 +81,11 @@ pipeline {
             steps {
                 // Conecto con el servidor y corro la imagen de la aplicacion
                 dir('./back') {
-                    sh 'ssh -v git@heroku.com'
+                    script {
+                        withCredentials([usernamePassword(credentialsId: 'heroku', passwordVariable: 'password', usernameVariable: 'username')]) {
+                            sh 'heroku login'
+                        }
+                    }
                 }
             }
         }
