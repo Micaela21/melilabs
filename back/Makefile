@@ -15,7 +15,3 @@ push-image:
 # Correr SonarQube
 sonar:
 	npm run sonar
-
-# Correr Selenium 
-selenium:
-	node seleniumTest.js

@@ -31,7 +31,7 @@ pipeline {
             steps {
                 // Ejecuto test sonar y test selenium
                 dir('./back/Test') {
-                    sh 'make selenium'
+                    sh 'node seleniumTest.js'
                 }
             }
         }
