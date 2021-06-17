@@ -72,6 +72,7 @@ pipeline {
                         remote.password = "${password}"
                     }
                     sshCommand remote: remote, command: 'docker rm -f melilabsserver'
+                    sshCommand remote: remote, command: 'docker pull m1c4/melilabs:latest'
                     sshCommand remote: remote, command: 'docker run --name melilabsserver -td -p 3001:3001 m1c4/melilabs:latest; docker ps'
                 }
             }
