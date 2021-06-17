@@ -1,15 +1,11 @@
-FROM node:alpine3.13
+FROM selenium/node-chrome:91.0
 
 USER root
 
-RUN apk update \
-    && apk add curl \
-    && apk add make
+RUN apt update \
+    && apt install curl \
+    && apt install make
 
-RUN apk add openjdk11-jre \
-    && java -version
+RUN sudo apt-get install -y nodejs
 
 VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
-
-
-ENTRYPOINT ["docker-entrypoint.sh"]
