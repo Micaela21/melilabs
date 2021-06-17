@@ -57,7 +57,6 @@ local.start(args, () => {
 
 // async function runTestWithCaps (capabilities) {
 //   let driver = new webdriver.Builder()
-//     .usingServer('http://micaelaalessandr_NFZVM2:SizykP6rm7z99TRGsL9g@hub-cloud.browserstack.com/wd/hub')
 //     .withCapabilities({
 //       ...capabilities,
 //       ...capabilities['browser'] && { browserName: capabilities['browser']}  // Because NodeJS language binding requires browserName to be defined
