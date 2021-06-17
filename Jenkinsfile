@@ -39,20 +39,20 @@ pipeline {
                 }
             }
         }
-        // stage('docker-build') {
-        //     steps {
-        //         // Actualizo la imagen de la app en dockerHub
-        //         dir('./back') {
-        //             sh 'ls'
-        //             script {
-        //                 sh 'docker build -t m1c4/melilabs:latest .'
-        //                 withDockerRegistry([ credentialsId: 'dockerHub', url: '' ]) {
-        //                     sh 'docker push m1c4/melilabs:latest'
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+        stage('docker-build') {
+            steps {
+                // Actualizo la imagen de la app en dockerHub
+                dir('./back') {
+                    sh 'ls'
+                    script {
+                        sh 'docker build -t m1c4/melilabs:latest .'
+                        withDockerRegistry([ credentialsId: 'dockerHub', url: '' ]) {
+                            sh 'docker push m1c4/melilabs:latest'
+                        }
+                    }
+                }
+            }
+        }
         stage('deploy') {
             steps {
                 // Conecto con el servidor y corro la imagen de la aplicacion
