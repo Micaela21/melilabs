@@ -15,7 +15,7 @@ var driver = new webdriver.Builder()
   .setChromeOptions(options)
   .build();
 
-driver.get("http://localhost:3001").then(() => {
+driver.get("https://c49c14a3c41f.ngrok.io").then(() => {
   var search = driver.findElement(By.name("search"));
   console.log(search);
   search.sendKeys("zapatillas");
