@@ -18,9 +18,9 @@ var driver = new webdriver.Builder()
 driver.get("http://localhost:3001").then(() => {
   var search = driver.findElement(By.name("search"));
   console.log(search);
-  search?.sendKeys("zapatillas");
+  search.sendKeys("zapatillas");
   var enter = driver.findElement(By.name('button'))
   console.log(enter)
-  enter?.click()
+  enter.click()
   driver.quit();
 });
