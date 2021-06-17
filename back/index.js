@@ -1,4 +1,5 @@
 const express = require("express");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const search = require("./search");
@@ -23,6 +24,12 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
+
+server.use('/api', createProxyMiddleware({
+    target: 'http://localhost:3001',
+    changeOrigin: true,
+  })
+);
 server.use(express.static("build"));
 server.use(morgan("dev"));
 server.use(express.urlencoded({ extended: false }));
