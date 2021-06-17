@@ -40,7 +40,7 @@ pipeline {
             agent {
                 // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
                 docker {
-                    image 'agente-docker:latest'
+                    image 'm1c4/agente-docker:latest'
                     args '-u 0:0 '
                 }
             }
