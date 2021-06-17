@@ -42,6 +42,7 @@ pipeline {
             steps {
                 // Actualizo la imagen de la app en dockerHub
                 dir('./back') {
+                    sh 'ls'
                     script {
                         sh 'docker build -t m1c4/melilabs:latest .'
                         withDockerRegistry([ credentialsId: 'dockerHub', url: '' ]) {
