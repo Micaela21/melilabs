@@ -5,7 +5,8 @@ USER root
 
 RUN apt-get update && apt-get install -y \
   ca-certificates \
-  curl
+  curl \
+  make
 
 ARG NODE_VERSION=14.16.0
 ARG NODE_PACKAGE=node-v$NODE_VERSION-linux-x64
