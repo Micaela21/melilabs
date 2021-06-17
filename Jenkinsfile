@@ -19,7 +19,6 @@ pipeline {
                     sh 'make config-client'
                 }
                 sh 'make copy'
-                sh 'cd back && ls'
             }
         }
         stage('test') {
@@ -32,7 +31,7 @@ pipeline {
             steps {
                 // Ejecuto test sonar y test selenium
                 dir('./back') {
-                    sh 'cd Test && node seleniumTest.js'
+                    sh 'make selenium'
                 }
             }
         }
@@ -47,11 +46,10 @@ pipeline {
             steps {
                 // Actualizo la imagen de la app en dockerHub
                 dir('./back') {
-                    sh 'ls'
                     script {
-                        sh 'docker build -t m1c4/melilabs:latest .'
+                        sh 'make build-image'
                         withDockerRegistry([ credentialsId: 'dockerHub', url: '' ]) {
-                            sh 'docker push m1c4/melilabs:latest'
+                            sh 'make push-image'
                         }
                     }
                 }
