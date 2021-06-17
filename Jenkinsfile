@@ -82,7 +82,6 @@ pipeline {
                 // Conecto con el servidor y corro la imagen de la aplicacion
                 dir('./back') {
                     sh 'ssh -v git@heroku.com'
-                    }
                 }
             }
         }
