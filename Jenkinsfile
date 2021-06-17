@@ -82,7 +82,7 @@ pipeline {
                 // Conecto con el servidor y corro la imagen de la aplicacion
                 dir('./back') {
                     script {
-                        withCredentials([usernamePassword(credentialsId: 'heroku', passwordVariable: 'password', usernameVariable: 'username')]) {
+                        withCredentials([usernamePassword(credentialsId: 'heroku-pass', passwordVariable: 'password', usernameVariable: 'username')]) {
                             sh 'heroku login'
                         }
                     }
