@@ -18,5 +18,4 @@ sonar:
 
 # Correr Selenium 
 selenium:
-	cd Test
 	node seleniumTest.js
