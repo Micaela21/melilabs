@@ -11,7 +11,7 @@ export const RESET = "RESET";
 export function getProductsByKeyword(keyword) {
   return (dispatch) => {
     axios
-      .get(`http://localhost:3001/api/search?q=${keyword}`)
+      .get(`https://c49c14a3c41f.ngrok.io/api/search?q=${keyword}`)
       .then((response) => {
         dispatch({
           type: "GET_PRODUCTS_BY_KEYWORD",
