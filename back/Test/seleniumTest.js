@@ -16,12 +16,7 @@ var driver = new webdriver.Builder()
   .build();
 
 driver.get("https://c49c14a3c41f.ngrok.io").then(() => {
-  var search = driver.findElement(By.name("search"));
-  console.log(search);
-  search.sendKeys("zapatillas").then(() => {
-    var enter = driver.findElement(By.name('button'))
-    console.log(enter)
-    enter.click()
-  })
+  driver.findElement(By.name("search")).sendKeys("zapatillas")
+  driver.findElement(By.name('button')).click()
   driver.quit();
 });
