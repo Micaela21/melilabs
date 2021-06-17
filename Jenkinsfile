@@ -19,6 +19,7 @@ pipeline {
                     sh 'make config-client'
                 }
                 sh 'make copy'
+                sh 'cd back && ls'
             }
         }
         stage('test') {
