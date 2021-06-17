@@ -40,6 +40,12 @@ pipeline {
             }
         }
         stage('docker-build') {
+            agent {
+                // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
+                docker {
+                    image 'agente-docker:latest'
+                }
+            }
             steps {
                 // Actualizo la imagen de la app en dockerHub
                 dir('./back') {
