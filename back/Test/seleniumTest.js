@@ -1,7 +1,6 @@
 const webdriver = require("selenium-webdriver"),
   By = webdriver.By,
   until = webdriver.until;
-  isElementPresent = webdriver.isElementPresent
 const chrome = require("selenium-webdriver/chrome");
 const chromedriver = require("chromedriver");
 const timeunit = require('timeunit')
@@ -33,7 +32,7 @@ async function test(){
     page && await driver.findElement(By.name('button')).click()
     console.log('wait')
     let products = driver.wait(function () {
-      return driver.isElementPresent(webdriver.By.name("mayor"));
+      return driver.elementLocated(webdriver.By.name("mayor"));
   }, 1000);
     console.log('click')
     products && await products.click()
