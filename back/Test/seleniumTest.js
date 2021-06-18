@@ -6,22 +6,23 @@ const chromedriver = require("chromedriver");
 
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 
-var options = new chrome.Options();
+const options = new chrome.Options();
 options.addArguments("--headless");
 
-var driver = new webdriver.Builder()
+const driver = new webdriver.Builder()
   .forBrowser("chrome")
   .setChromeOptions(options)
   .build();
 
 async function test(){
-  let page = await driver.get('http://192.168.200.35:3001/')
+  let page = await driver.get(process.env.URL)
   try {
     page && await driver.findElement(By.name("search")).sendKeys("zapatillas")
     page && await driver.findElement(By.name('button')).click()
   } catch(e){
     console.log(e)
   }
+  
   let products = await driver.wait(until.elementIsVisible(By.name('mayor')),5000)
   try {
     products && await driver.findElement(By.name('mayor')).click()
@@ -29,7 +30,6 @@ async function test(){
     console.log(e)
   }
   driver.quit();
-
 }
 
 test()
