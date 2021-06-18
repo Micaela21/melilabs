@@ -26,12 +26,14 @@ const driver = new webdriver.Builder()
 
 async function test(){
   let page = await driver.get('http://192.168.200.35:3001/')
+  console.log(page)
   try {
     page && await driver.findElement(By.name("search")).sendKeys("zapatillas")
     page && await driver.findElement(By.name('button')).click()
-    driver.manage().timeouts().pageLoadTimeout(20, timeunit.seconds);
     console.log('wait')
-    let products = await driver.findElement(By.xpath("//button[@name ='mayor']"))
+    let products = driver.wait(function () {
+      return driver.isElementPresent(webdriver.By.name("mayor"));
+  }, 1000);
     console.log('click')
     products && await products.click()
     driver.quit();
