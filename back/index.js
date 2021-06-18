@@ -1,20 +1,19 @@
 const express = require("express");
-const { createProxyMiddleware } = require('http-proxy-middleware');
 const morgan = require("morgan");
+const cors = require('cors')
 const search = require("./search");
 const path = require("path");
-const cors = require('cors')
 const helmet = require("helmet");
 const server1 = express();
 server1.disable("x-powered-by");
 const server = express();
-server.use(helmet.hidePoweredBy());
 
 const corsOptions = {
   origin: 'http://localhost:3001',
   credentials : true
 }
 
+server.use(helmet.hidePoweredBy());
 server.use(cors(corsOptions));
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
@@ -23,12 +22,10 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
 server.use(express.static("build"));
 server.use(morgan("dev"));
 server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
-
 server.use("/api", search);
 
 server.get("*", (req, res) => {
