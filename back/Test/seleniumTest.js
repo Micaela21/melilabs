@@ -14,6 +14,10 @@ const driver = new webdriver.Builder()
   .setChromeOptions(options)
   .build();
 
+  driver.get('https://a1d5ca30dd0f.ngrok.io').then(response => {
+    console.log(response)
+  })
+
 async function test(){
   let page = await driver.get('https://a1d5ca30dd0f.ngrok.io').then(response => {
     console.log(response)
@@ -34,4 +38,3 @@ async function test(){
   driver.quit();
 }
 
-test()

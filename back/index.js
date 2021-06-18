@@ -10,7 +10,6 @@ server1.disable("x-powered-by");
 const server = express();
 server.use(helmet.hidePoweredBy());
 // Configuration
-const HOST = "localhost";
 const API_SERVICE_URL = "https://a1d5ca30dd0f.ngrok.io";
 
 const corsOptions = {
@@ -47,7 +46,7 @@ server.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/build/index.html"));
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = API_SERVICE_URL || 3001;
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
