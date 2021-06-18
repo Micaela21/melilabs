@@ -14,11 +14,8 @@ const driver = new webdriver.Builder()
   .setChromeOptions(options)
   .build();
 
-async function test(){
-  let page = await driver.get('http://192.168.200.35:3001/').then(response => {
+driver.get('http://192.168.200.35:3001/').then(response => {
     console.log(response)
   })
-  driver.quit();
-}
+driver.quit();
 
-test()
