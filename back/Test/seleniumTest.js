@@ -14,7 +14,7 @@ const driver = new webdriver.Builder()
   .setChromeOptions(options)
   .build();
 
-  driver.get('https://a1d5ca30dd0f.ngrok.io').then(response => {
+  driver.get('https://93a67af8a987.ngrok.io').then(response => {
     console.log(response)
   })
 
