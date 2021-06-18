@@ -18,19 +18,6 @@ async function test(){
   let page = await driver.get('http://192.168.200.35:3001/').then(response => {
     console.log(response)
   })
-  try {
-    page && await driver.findElement(By.name("search")).sendKeys("zapatillas")
-    page && await driver.findElement(By.name('button')).click()
-  } catch(e){
-    console.log(e)
-  }
-
-  try {
-    let products = await driver.wait(until.elementIsVisible(By.name('mayor')),5000)
-    products && await driver.findElement(By.name('mayor')).click()
-  } catch (e) {
-    console.log(e)
-  }
   driver.quit();
 }
 
