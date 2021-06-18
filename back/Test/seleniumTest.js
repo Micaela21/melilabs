@@ -1,6 +1,7 @@
 const webdriver = require("selenium-webdriver"),
   By = webdriver.By,
   until = webdriver.until;
+  isElementPresent = webdriver.isElementPresent
 const chrome = require("selenium-webdriver/chrome");
 const chromedriver = require("chromedriver");
 const timeunit = require('timeunit')
