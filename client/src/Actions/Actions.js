@@ -12,7 +12,7 @@ export const RESET = "RESET";
 export function getProductsByKeyword(keyword) {
   return (dispatch) => {
     axios
-      .get(`http://localhost:3001/api/search?q=${keyword}`)
+      .get(`${process.env.PORT}/api/search?q=${keyword}`)
       .then((response) => {
         dispatch({
           type: "GET_PRODUCTS_BY_KEYWORD",
