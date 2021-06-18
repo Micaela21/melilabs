@@ -3,7 +3,6 @@ const webdriver = require("selenium-webdriver"),
   until = webdriver.until;
 const chrome = require("selenium-webdriver/chrome");
 const chromedriver = require("chromedriver");
-const url = window.location.href
 
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 
@@ -16,7 +15,7 @@ var driver = new webdriver.Builder()
   .build();
 
 async function test(){
-  let page = await driver.get(url)
+  let page = await driver.get('http://192.168.200.35:3001/')
   try {
     page && await driver.findElement(By.name("search")).sendKeys("zapatillas")
     page && await driver.findElement(By.name('button')).click()
@@ -32,3 +31,5 @@ async function test(){
   driver.quit();
 
 }
+
+test()
