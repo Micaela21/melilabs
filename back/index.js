@@ -14,12 +14,12 @@ const HOST = "localhost";
 const API_SERVICE_URL = "https://a1d5ca30dd0f.ngrok.io";
 
 const corsOptions = {
-  origin: 'http://localhost:3001',
+  origin: API_SERVICE_URL,
   credentials : true
 }
 
 // Proxy endpoints
-app.use('/json_placeholder', createProxyMiddleware({
+server.use('/json_placeholder', createProxyMiddleware({
   target: API_SERVICE_URL,
   changeOrigin: true,
   pathRewrite: {
@@ -29,7 +29,7 @@ app.use('/json_placeholder', createProxyMiddleware({
 
 server.use(cors(corsOptions));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+  res.header('Access-Control-Allow-Origin', API_SERVICE_URL);
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
