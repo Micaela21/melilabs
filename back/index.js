@@ -15,13 +15,13 @@ const corsOptions = {
 
 server.use(helmet.hidePoweredBy());
 server.use(cors(corsOptions));
-server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+// server.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
 server.use(express.static("build"));
 server.use(morgan("dev"));
 server.use(express.urlencoded({ extended: false }));
@@ -36,4 +36,3 @@ const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
-
