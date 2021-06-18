@@ -25,21 +25,20 @@ const driver = new webdriver.Builder()
   // })
 
 async function test(){
-  let page = await driver.get('https://93a67af8a987.ngrok.io')
+  let page = await driver.get('http://192.168.200.35:3001/')
   try {
     page && await driver.findElement(By.name("search")).sendKeys("zapatillas")
     page && await driver.findElement(By.name('button')).click()
     driver.manage().timeouts().pageLoadTimeout(20, timeunit.seconds);
-    console.log(driver.manage().timeouts().pageLoadTimeout(20, timeunit.seconds))
     console.log('wait')
-    let products = await driver.wait(driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div[2]/div/div/button[2]")),5000)
+    let products = await driver.findElement(By.xpath("//button[@name ='mayor']"))
     console.log('click')
-    products && await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div[2]/div/div/button[2]")).click()
+    products && await products.click()
+    driver.quit();
   } catch(e){
     console.log(e)
+    driver.quit();
   }
-
-  driver.quit();
 }
 
 
