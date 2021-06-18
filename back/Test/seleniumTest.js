@@ -22,7 +22,7 @@ async function test(){
   } catch(e){
     console.log(e)
   }
-  let products = await driver.until.elementIsVisible(By.name('mayor'))
+  let products = await driver.wait(until.elementIsVisible(By.name('mayor')),5000)
   try {
     products && await driver.findElement(By.name('mayor')).click()
   } catch (e) {

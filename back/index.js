@@ -24,11 +24,6 @@ server.use((req, res, next) => {
   next();
 });
 
-// server.use('/api', createProxyMiddleware({
-//     target: 'http://localhost:3001',
-//     changeOrigin: true,
-//   })
-// );
 server.use(express.static("build"));
 server.use(morgan("dev"));
 server.use(express.urlencoded({ extended: false }));
