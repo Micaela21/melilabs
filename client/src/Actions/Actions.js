@@ -7,12 +7,12 @@ export const MENOR = "MENOR";
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export const BEFORE_PAGE = "BEFORE_PAGE";
 export const RESET = "RESET";
-const url = window.location.href
+// const url = window.location.href
 
 export function getProductsByKeyword(keyword) {
   return (dispatch) => {
     axios
-      .get(`${url}/api/search?q=${keyword}`)
+      .get(`http://localhost:3001/api/search?q=${keyword}`)
       .then((response) => {
         dispatch({
           type: "GET_PRODUCTS_BY_KEYWORD",
