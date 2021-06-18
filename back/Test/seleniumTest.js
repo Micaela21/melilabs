@@ -31,7 +31,7 @@ async function test(){
     page && await driver.findElement(By.name("search")).sendKeys("zapatillas")
     page && await driver.findElement(By.name('button')).click()
     console.log('wait')
-    let products = driver.wait(until.elementLocated(By.name('mayor')), 5 * 1000).click()
+    let products = driver.wait(until.elementLocated(By.tag('body')), 5 * 1000).click()
     console.log(products)
     driver.quit();
   } catch(e){
