@@ -21,42 +21,42 @@ pipeline {
                 sh 'make copy'
             }
         }
-        stage('test') {
-            agent {
-                // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
-                docker {
-                    image 'm1c4/selenium-nodejs-chrome:latest'
-                }
-            }
-            steps {
-                // Ejecuto test sonar y test selenium
-                dir('./back') {
-                    sh 'make sonar'
-                    sh 'make selenium'
-                    sh 'npm run newmanRemoto'
-                }
-            }
-        }
-        stage('docker-build') {
-            agent {
-                // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
-                docker {
-                    image 'm1c4/agente-docker:latest'
-                    args '-u 0:0 '
-                }
-            }
-            steps {
-                // Actualizo la imagen de la app en dockerHub
-                dir('./back') {
-                    script {
-                        sh 'make build-image'
-                        withDockerRegistry([ credentialsId: 'dockerHub', url: '' ]) {
-                            sh 'make push-image'
-                        }
-                    }
-                }
-            }
-        }
+        // stage('test') {
+        //     agent {
+        //         // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
+        //         docker {
+        //             image 'm1c4/selenium-nodejs-chrome:latest'
+        //         }
+        //     }
+        //     steps {
+        //         // Ejecuto test sonar y test selenium
+        //         dir('./back') {
+        //             sh 'make sonar'
+        //             sh 'make selenium'
+        //             sh 'npm run newmanRemoto'
+        //         }
+        //     }
+        // }
+        // stage('docker-build') {
+        //     agent {
+        //         // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
+        //         docker {
+        //             image 'm1c4/agente-docker:latest'
+        //             args '-u 0:0 '
+        //         }
+        //     }
+        //     steps {
+        //         // Actualizo la imagen de la app en dockerHub
+        //         dir('./back') {
+        //             script {
+        //                 sh 'make build-image'
+        //                 withDockerRegistry([ credentialsId: 'dockerHub', url: '' ]) {
+        //                     sh 'make push-image'
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
         stage('deploy') {
             steps {
                 // Conecto con el servidor y corro la imagen de la aplicacion
