@@ -15,15 +15,6 @@ const driver = new webdriver.Builder()
   .setChromeOptions(options)
   .build();
 
-  // driver.get('https://93a67af8a987.ngrok.io').then(response => {
-  //   console.log(response)
-  //   driver.findElement(By.name("search")).sendKeys("zapatillas")
-  //   driver.findElement(By.name('button')).click().then(response => {
-  //     console.log(response)
-  //     driver.findElement(By.name("mayor")).click()
-  //   })
-  // })
-
 async function test(){
   let page = await driver.get('http://192.168.200.35:3001/')
   console.log(page)
@@ -31,8 +22,10 @@ async function test(){
     page && await driver.findElement(By.name("search")).sendKeys("zapatillas")
     page && await driver.findElement(By.name('button')).click()
     console.log('wait')
-    let products = driver.wait(until.elementLocated(By.xpath('/html/body')), 5 * 1000).click()
-    console.log(products)
+    let ele = await driver.wait(until.elementLocated(By.name('mayor')),50000);
+    let foo = await ele.getText();
+    assert(foo == "Hello from JavaScript");
+    // driver.wait(until.elementLocated(By.xpath('//*[@id="root"]/div/div/div[2]/div[2]/div/div/button[2]')), 10 * 1000).click()
     driver.quit();
   } catch(e){
     console.log(e)
