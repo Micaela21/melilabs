@@ -33,7 +33,6 @@ pipeline {
                 dir('./back') {
                     sh 'make sonar'
                     sh 'make selenium'
-                    sh 'npm run newmanRemoto'
                 }
             }
         }
