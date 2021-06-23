@@ -15,3 +15,11 @@ push-image:
 # Correr SonarQube
 sonar:
 	npm run sonar
+	
+# Correr Selenium
+selenium:
+	npm run selenium
+
+# Correr Newman
+newman:
+	npm run newmanRemoto

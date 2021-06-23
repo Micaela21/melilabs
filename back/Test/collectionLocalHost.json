@@ -1,0 +1,35 @@
+{
+	"info": {
+		"_postman_id": "4f0d7d00-1ff1-48c6-b4c6-41d8364403fb",
+		"name": "JSON",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3001/api/search?q=zapatillas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/search?q=zapatillas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "zapatillas"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

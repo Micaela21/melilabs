@@ -32,9 +32,8 @@ pipeline {
                 // Ejecuto test sonar y test selenium
                 dir('./back') {
                     sh 'make sonar'
-                }
-                dir('./back/Test') {
-                    sh 'node seleniumTest.js'
+                    sh 'make selenium'
+                    sh 'npm run newmanRemoto'
                 }
             }
         }
@@ -73,6 +72,7 @@ pipeline {
                     sshCommand remote: remote, command: 'docker rm -f melilabsserver'
                     sshCommand remote: remote, command: 'docker pull m1c4/melilabs:latest'
                     sshCommand remote: remote, command: 'docker run --name melilabsserver -td -p 3001:3001 m1c4/melilabs:latest; docker ps'
+                    sshCommand remote: remote, command: 'pwd'
                 }
             }
         }

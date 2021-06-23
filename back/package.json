@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://192.168.200.35:9000 -Dsonar.login=9a02607543fa33e69d161ba644336bed2022e291 -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true"
+    "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://192.168.200.35:9000 -Dsonar.login=9a02607543fa33e69d161ba644336bed2022e291 -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true",
+    "selenium": "node Test/seleniumTest.js",
+    "newmanLocal": "newman run Test/collectionLocalHost.json",
+    "newmanRemoto": "newman run Test/collectionRemoto.json"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +24,7 @@
     "nodemon": "^2.0.7",
     "sonar-scanner": "^3.1.0",
     "selenium-webdriver": "^3.6.0",
-    "chromedriver": "^91.0.1"
+    "chromedriver": "^91.0.1",
+    "newman": "^5.2.3"
   }
 }
