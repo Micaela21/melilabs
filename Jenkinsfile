@@ -26,6 +26,7 @@ pipeline {
                 // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
                 docker {
                     image 'm1c4/selenium-nodejs-chrome:latest'
+                    args '-u 0:0 '
                 }
             }
             steps {

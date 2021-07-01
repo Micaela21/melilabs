@@ -19,6 +19,8 @@ RUN curl https://nodejs.org/dist/v$NODE_VERSION/$NODE_PACKAGE.tar.gz | tar -xzC 
 
 VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
 
+EXPOSE 9000
+
 # ENTRYPOINT ["docker-entrypoint.sh"]
 
 # # Agente node
