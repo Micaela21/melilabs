@@ -1,27 +1,31 @@
-# Agente selenium
-FROM selenium/node-chrome:91.0
+# Agente Sonar
+FROM sonarqube:lts
 
 USER root
 
-RUN apt-get update && apt-get install -y \
-  ca-certificates \
-  curl \
-  make
+VOLUME /opt/sonarqube/data
 
-ARG NODE_VERSION=14.16.0
-ARG NODE_PACKAGE=node-v$NODE_VERSION-linux-x64
-ARG NODE_HOME=/opt/$NODE_PACKAGE
+# # Agente selenium
+# FROM selenium/node-chrome:91.0
 
-ENV NODE_PATH $NODE_HOME/lib/node_modules
-ENV PATH $NODE_HOME/bin:$PATH
+# USER root
 
-RUN curl https://nodejs.org/dist/v$NODE_VERSION/$NODE_PACKAGE.tar.gz | tar -xzC /opt/
+# RUN apt-get update && apt-get install -y \
+#   ca-certificates \
+#   curl \
+#   make
 
-VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
+# ARG NODE_VERSION=14.16.0
+# ARG NODE_PACKAGE=node-v$NODE_VERSION-linux-x64
+# ARG NODE_HOME=/opt/$NODE_PACKAGE
 
-EXPOSE 9000
+# ENV NODE_PATH $NODE_HOME/lib/node_modules
+# ENV PATH $NODE_HOME/bin:$PATH
 
-# ENTRYPOINT ["docker-entrypoint.sh"]
+# RUN curl https://nodejs.org/dist/v$NODE_VERSION/$NODE_PACKAGE.tar.gz | tar -xzC /opt/
+
+# VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
+
 
 # # Agente node
 # FROM node:alpine3.13
