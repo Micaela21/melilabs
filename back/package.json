@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://192.168.200.35:9000/ -Dsonar.login=6cb15189e81f82837b1f16270574a21d6bfda0ea -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true",
+    "sonar": "sonar-scanner -Dsonar.projectKey=melilabs -Dsonar.sources=. -Dsonar.host.url=http://tsoft-net:9000/ -Dsonar.login=3e0bd65d6e996c2182b540a8b4a55c438b331e18 -Dsonar.scm.forceReloadAll=true -Dsonar.qualitygate.wait=true",
     "selenium": "node Test/seleniumTest.js",
     "newmanLocal": "newman run Test/collectionLocalHost.json",
     "newmanRemoto": "newman run Test/collectionRemoto.json"
