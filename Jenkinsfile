@@ -21,22 +21,7 @@ pipeline {
                 sh 'make copy'
             }
         }
-        stage('sonar') {
-            agent {
-                // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
-                docker {
-                    image 'sonarqube'
-                    args '-u 0:0 '
-                }
-            }
-            steps {
-                // Ejecuto test sonar y test selenium
-                dir('./back') {
-                    sh 'make sonar'
-                }
-            }
-        }
-        stage('selenium') {
+        stage('test') {
             agent {
                 // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
                 docker {
@@ -47,6 +32,7 @@ pipeline {
             steps {
                 // Ejecuto test sonar y test selenium
                 dir('./back') {
+                    sh 'make sonar'
                     sh 'make selenium'
                 }
             }
