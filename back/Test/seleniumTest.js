@@ -3,7 +3,6 @@ const webdriver = require("selenium-webdriver"),
   until = webdriver.until;
 const chrome = require("selenium-webdriver/chrome");
 const chromedriver = require("chromedriver");
-const timeunit = require('timeunit')
 
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 
@@ -16,7 +15,7 @@ const driver = new webdriver.Builder()
   .build();
 
 async function test(){
-  let page = await driver.get('https://a17332189cf0.ngrok.io')
+  let page = await driver.get('http://192.168.200.35:3001/')
   console.log(page)
   try {
     page && await driver.findElement(By.name("search")).sendKeys("zapatillas")
