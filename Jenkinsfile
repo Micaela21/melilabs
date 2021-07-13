@@ -32,6 +32,7 @@ pipeline {
                 // Ejecuto test sonar y test selenium
                 dir('./back') {
                     sh 'make sonar'
+                    // sh 'make selenium'
                 }
             }
         }
