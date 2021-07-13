@@ -15,7 +15,7 @@ const driver = new webdriver.Builder()
   .build();
 
 async function test(){
-  let page = await driver.get('https://dc6362b017c2.ngrok.io:3001/')
+  let page = await driver.get('http://192.168.200.35:3001/')
   console.log(page)
   try {
     const searchBar = await driver.findElement(By.name("search")).sendKeys("zapatillas")
