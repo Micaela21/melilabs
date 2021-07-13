@@ -18,9 +18,10 @@ async function test(){
   let page = await driver.get('http://192.168.200.35:3001/')
   console.log(page)
   try {
-    page && await driver.findElement(By.name("search")).sendKeys("zapatillas")
-    page && await driver.findElement(By.name('button')).click()
-    console.log('wait')
+    const searchBar = await driver.findElement(By.name("search")).sendKeys("zapatillas")
+    const button = await driver.findElement(By.name('button')).click()
+    console.log(searchBar)
+    console.log(button)
     driver.quit();
   } catch(e){
     console.log(e)
