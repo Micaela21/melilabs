@@ -20,22 +20,22 @@ pipeline {
                 sh 'make copy'
             }
         }
-        // stage('test') {
-        //     agent {
-        //         // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
-        //         docker {
-        //             image 'm1c4/selenium-nodejs-chrome:latest'
-        //             args '-u 0:0 '
-        //         }
-        //     }
-        //     steps {
-        //         // Ejecuto test sonar y test selenium
-        //         dir('./back') {
-        //             sh 'make sonar'
-        //             sh 'make selenium'
-        //         }
-        //     }
-        // }
+        stage('test') {
+            agent {
+                // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
+                docker {
+                    image 'm1c4/selenium-nodejs-chrome:latest'
+                    args '-u 0:0 '
+                }
+            }
+            steps {
+                // Ejecuto test sonar y test selenium
+                dir('./back') {
+                    sh 'make sonar'
+                    // sh 'make selenium'
+                }
+            }
+        }
         // stage('docker-build') {
         //     agent {
         //         // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
