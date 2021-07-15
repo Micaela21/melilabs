@@ -29,7 +29,6 @@ USER root
 RUN apk update \
     && apk add curl \
     && apk add make \
-    && npm install -g npm-check-updates
 
 VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
 
