@@ -21,10 +21,10 @@
     "timeunit": "^1.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.12",
     "sonar-scanner": "^3.1.0",
     "selenium-webdriver": "^3.6.0",
     "chromedriver": "^91.0.1",
-    "newman": "^5.2.3"
+    "newman": "^5.2.4"
   }
 }
