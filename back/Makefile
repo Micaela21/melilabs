@@ -1,6 +1,8 @@
 # Configurar Back
 config-back:
 	rm -rf build
+	npm install -g npm-check-updates
+	ncu -u
 	npm update
 	npm install
 	mkdir build
