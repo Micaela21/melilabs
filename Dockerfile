@@ -28,7 +28,7 @@ USER root
 
 RUN apk update \
     && apk add curl \
-    && apk add make \
+    && apk add make 
 
 VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
 
