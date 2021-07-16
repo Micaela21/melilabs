@@ -50,7 +50,7 @@ pipeline {
                 dir('./back') {
                     script {
                         sh 'make build-image'
-                        withDockerRegistry([ credentialsId: 'dockerHub', url: '' ]) {
+                        withDockerRegistry([ credentialsId: 'Dockerhub', url: '' ]) {
                             sh 'make push-image'
                         }
                     }
