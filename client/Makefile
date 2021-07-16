@@ -1,4 +1,4 @@
 # Preparar Front
 config-client:
 	npm install
-	npm run build
+	CI=false npm run build
