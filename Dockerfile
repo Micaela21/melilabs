@@ -21,29 +21,29 @@
 # VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
 
 
-# Agente node
-FROM node:alpine3.13
-
-USER root
-
-RUN apk update \
-    && apk add curl \
-    && apk add make 
-
-VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
-
-ENTRYPOINT ["docker-entrypoint.sh"]
-
-
-# # Agente Dockers
-# FROM docker:latest
+# # Agente node
+# FROM node:alpine3.13
 
 # USER root
 
 # RUN apk update \
 #     && apk add curl \
-#     && apk add make
+#     && apk add make 
 
 # VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
 
 # ENTRYPOINT ["docker-entrypoint.sh"]
+
+
+# Agente Dockers
+FROM docker:latest
+
+USER root
+
+RUN apk update \
+    && apk add curl \
+    && apk add make
+
+VOLUME /var/run/docker.sock /var/jenkins_home /usr/bin/docker
+
+ENTRYPOINT ["docker-entrypoint.sh"]

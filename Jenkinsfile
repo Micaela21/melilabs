@@ -57,24 +57,24 @@ pipeline {
                 }
             }
         }
-        // stage('deploy') {
-        //     steps {
-        //         // Conecto con el servidor y corro la imagen de la aplicacion
-        //         script {
-        //             def remote = [:]
-        //             remote.name = 'ubuntu'
-        //             remote.host = '192.168.200.35'
-        //             remote.allowAnyHosts = true
-        //             withCredentials([usernamePassword(credentialsId: 'remote', passwordVariable: 'password', usernameVariable: 'username')]) {
-        //                 remote.user = "${username}"
-        //                 remote.password = "${password}"
-        //             }
-        //             sshCommand remote: remote, command: 'docker rm -f melilabsserver'
-        //             sshCommand remote: remote, command: 'docker pull m1c4/melilabs:latest'
-        //             sshCommand remote: remote, command: 'docker run --name melilabsserver -td -p 3001:3001 m1c4/melilabs:latest; docker ps'
-        //         }
-        //     }
-        // }
+        stage('deploy') {
+            steps {
+                // Conecto con el servidor y corro la imagen de la aplicacion
+                script {
+                    def remote = [:]
+                    remote.name = 'ubuntu'
+                    remote.host = '192.168.200.35'
+                    remote.allowAnyHosts = true
+                    withCredentials([usernamePassword(credentialsId: 'Remoto', passwordVariable: 'password', usernameVariable: 'username')]) {
+                        remote.user = "${username}"
+                        remote.password = "${password}"
+                    }
+                    sshCommand remote: remote, command: 'docker rm -f melilabsserver'
+                    sshCommand remote: remote, command: 'docker pull m1c4/melilabs:latest'
+                    sshCommand remote: remote, command: 'docker run --name melilabsserver -td -p 3001:3001 m1c4/melilabs:latest; docker ps'
+                }
+            }
+        }
         // stage('test-API') {
         //     agent {
         //         // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
