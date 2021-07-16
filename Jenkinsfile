@@ -75,21 +75,21 @@ pipeline {
                 }
             }
         }
-        // stage('test-API') {
-        //     agent {
-        //         // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
-        //         docker {
-        //             image 'm1c4/alpinejn:latest'
-        //             args '-u 0:0 '
-        //         }
-        //     }
-        //     steps {
-        //         // Ejecuto test sonar y test selenium
-        //         dir('./back') {
-        //             sh 'npm run newmanRemoto'
-        //         }
-        //     }
-        // }
+        stage('test-API') {
+            agent {
+                // Uso agente docker, crea un contenedor con el entorno ya configurado para poder correr aplicaciones
+                docker {
+                    image 'm1c4/alpinejn:latest'
+                    args '-u 0:0 '
+                }
+            }
+            steps {
+                // Ejecuto test sonar y test selenium
+                dir('./back') {
+                    sh 'npm run newmanRemoto'
+                }
+            }
+        }
     }
 }
 
